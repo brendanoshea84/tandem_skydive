@@ -13,6 +13,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -39,9 +40,74 @@
 </head>
 
 <body>
-    <h1>Hello, world!</h1>
+    <div class="container-fluid w-100 fixed-top ">
+        <nav class="navbar navbar-expand-md navbar-light bg-white ">
+            <a class="navbar-brand" href="#">
+                <img src="/media/photos/symbol.jpg" width="50" height="50" alt="Göteborg skydive smybol">
+            </a>
 
-    {% block header_extra %}
+            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#main-nav"
+                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="main-nav">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link " href="#" id="packages_toggle" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            SkyDive Packages
+                        </a>
+                        <div class="dropdown-menu " aria-labelledby="packages_toggle">
+                            <a class="dropdown-item" href="#">Whats Tandem Skydive?</a>
+                            <a class="dropdown-item" href="#">Your Day</a>
+                            <a class="dropdown-item" href="#">Packages</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link " href="#" id="merc_toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Merchandise
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="merc_toggle">
+                            <a class="dropdown-item" href="#">Capturing you day</a>
+                            <a class="dropdown-item" href="#">Clothes</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown ml-auto">
+                        <a class="nav-link " href="#" id="account_toggle" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            My Account
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="account_toggle">
+                            {% if request.user.is_authenticated %}
+                            {% if request.user.is_superuser %}
+                            <a href="#" class="dropdown-item">Product Management</a>
+                            {% endif %}
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Logout</a>
+                            {% else %}
+                            <a href="#" class="dropdown-item">Register</a>
+                            <a href="#" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <hr>
+
+    {% block show_case %}
+    {% endblock %}
+
+    {% block special_block %}
     {% endblock %}
 
     {% block main_content %}
