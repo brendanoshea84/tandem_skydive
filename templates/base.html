@@ -46,13 +46,13 @@
                 <img src="/media/photos/symbol.jpg" width="50" height="50" alt="Göteborg skydive smybol">
             </a>
 
-            <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#main-nav"
+            <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#main-nav"
                 aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
 
-            <div class="collapse navbar-collapse" id="main-nav">
+            <div class="collapse navbar-collapse px-2" id="main-nav">
 
                 <ul class="navbar-nav ml-auto">
 
@@ -64,7 +64,7 @@
                         <div class="dropdown-menu " aria-labelledby="packages_toggle">
                             <a class="dropdown-item" href="#">Whats Tandem Skydive?</a>
                             <a class="dropdown-item" href="#">Your Day</a>
-                            <a class="dropdown-item" href="#">Packages</a>
+                            <a class="dropdown-item" href="{% url 'products' %}">Packages</a>
                         </div>
                     </li>
 

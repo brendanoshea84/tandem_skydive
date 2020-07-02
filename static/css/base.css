@@ -9,12 +9,18 @@
 
 .welcome-text {
     color: white;
-    font-size: 1.5rem;
+    font-size: 4vh;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
-.welcome-msg {
-    padding-left: 20%;
+.shift-left-top {
+    
+    padding-top: 10%;   
+}
+
+.shift-left,
+.shift-left-top{
+    padding-left: 15%;
 }
 
 .w-100 { 
@@ -42,8 +48,27 @@
     height: 40vh;
 }
 
+.cover {
+    margin-top: 50px;
+}
+
+
+.film {
+    width: 40vw;
+    height: auto;    
+}
+
+.film video {
+    width: 100%;
+    height: 100%;
+}
+
+
 @media (max-width: 991px) {
     .slide-height {
         height: 20vh;
+    }
+    .welcome-text {
+        font-size: 2.5vh;
     }
 }
