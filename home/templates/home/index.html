@@ -1,56 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block show_case %}
-<div class="container-fluid w-100 cover">
-    <div class="row slide-height ">
-        <div class="top-img w-100">
-            <div class="row ">
-                <div class="col shift-left-top ">
-                    <p class="welcome-text ">Skydive Göteborg</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block special_block %}
-<div class="container">
-    <div id="carouselContent" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active text-center p-4">
-                <p>Testing carousel</p>
-            </div>
-            <div class="carousel-item text-center p-4">
-                <p>add specials via admin</p>
-            </div>
-            <div class="carousel-item text-center p-4">
-                <p>3 msgs</p>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</div>
-<hr>
-{% endblock %}
 
 {% block main_content %}
-<br>
-<div class="container">
-    <div class="row">
-        <h1 class="col ">Whats Tandem Skydiving?</h1>
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-12 col-lg-5">
+    <div class="row mx-1 px-4 justify-content-center">
+        <div class="col-12 col-lg-5 mx-2" >
+            <h1 class="col ">Whats Tandem Skydiving?</h1>
+            <br>
             <p>Do you want to ADVENTURE of a life time? <br><br>
                 With our professional crew and no experience, <b>SKYDIVE GÖTEBORG</b> can make this happen!
                 <br><br>
@@ -59,8 +15,8 @@
                 Check out our deals for a memory you won't forget!
             </p>
         </div>
-        <div class="col-12 col-lg"></div>
-        <div class="col-12 col-lg-5">
+        
+        <div class="col-12 col-lg-5 mx-2">
             <div class="film text-center">
             <video autoplay controls muted>
                 <source src="/media/film/tandem-example.mp4" type="video/mp4">

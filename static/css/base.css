@@ -7,6 +7,14 @@
     
 }
 
+.ground {
+    background: url('/media/photos/ground.jpg') no-repeat;
+    background-size: 100% 100%;
+    max-width: 80%;
+    height: 250px; 
+    margin: auto;
+}
+
 .welcome-text {
     color: white;
     font-size: 4vh;
@@ -54,7 +62,7 @@
 
 
 .film {
-    width: 40vw;
+    width: 100%;
     height: auto;    
 }
 
@@ -63,6 +71,20 @@
     height: 100%;
 }
 
+.shopping-basket {
+    padding-top: 17px;
+}
+
+.custom-highlight {
+    text-decoration: underline;
+    text-decoration-color: blue;
+    
+    
+}
+
+.bg {
+    background-color: rgb(214, 238, 255, .25)
+}
 
 @media (max-width: 991px) {
     .slide-height {

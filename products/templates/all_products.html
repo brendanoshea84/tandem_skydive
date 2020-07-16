@@ -1,4 +1,27 @@
-<h1>Testing products pages</h1>
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+<div class="container">
+<h1>Custom your package</h1>
+<br>
+
+
 {% for product in products %}
-<p>{{ product.name }}</p>
-{% endfor %}
+{% if product.category != "1" %}
+<div class="row">
+    
+    <div class="col">
+        <p>{{ product.name }}</p>
+        <p>{{ product.description }}</p>
+        <p>{{ product.category }}</p>
+        <p>{{ product.price }}</p>
+    </div>
+</div>
+    <br>
+    <hr>
+{% endif %}
+    {% endfor %}
+</div>
+</div>
+{% endblock %}

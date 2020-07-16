@@ -3,9 +3,9 @@
       "pk": 1,
       "model": "products.product",
       "fields": {
-        "sku": "jump1",
-        "name": "Tandem SkyDive Basic",
-        "description": "Get to do a tandem skydive without filming your experience",
+        "sku": "jump",
+        "name": "Tandem SkyDive",
+        "description": "Get to do a tandem skydive experience",
         "price": 3000,
         "category": 1
       }
@@ -14,33 +14,33 @@
       "pk": 2,
       "model": "products.product",
       "fields": {
-        "sku": "jump2",
-        "name": "Tandem SkyDive Handcamera",
-        "description": "Get to do a tandem skydive with your jump instructor holding a small hand camera to capture your reactions to the jump",
-        "price": 3500,
-        "category": 1
+        "sku": "film1",
+        "name": "Handcamera",
+        "description": "Get your skydive experience captured by a hand camera filmed by the Tandom Master",
+        "price": 500,
+        "category": 2
       }
     },
     {
       "pk": 3,
       "model": "products.product",
       "fields": {
-        "sku": "jump3",
-        "name": "Tandem SkyDive With Filming",
+        "sku": "film2",
+        "name": "Filmed",
         "description": "Get to do a tandem skydive with an extra professional filming skydiver who will capture your whole experience via film",
-        "price": 4000,
-        "category": 1
+        "price": 1000,
+        "category": 2
       }
     },
     {
       "pk": 4,
       "model": "products.product",
       "fields": {
-        "sku": "jump4",
+        "sku": "film3",
         "name": "Tandem SkyDive With Camera and Film",
         "description": "Get to do a tandem skydive with an extra professional filming skydiver who will capture your whole experience via film and also take some still shots with a HD Camera",
-        "price": 4300,
-        "category": 1
+        "price": 1300,
+        "category": 2
       }
     },
     {
@@ -51,7 +51,7 @@
         "name": "Evolution to skydive T-shirt ",
         "description": "Black and white t-shirt of the evolution of man to skydive",
         "price": 300,
-        "category": 2,
+        "category": 3,
         "image": "evolutionTshirtBlack.jpg"
       }
     }
