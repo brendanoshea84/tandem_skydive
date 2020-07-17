@@ -5,20 +5,20 @@ from .forms import ProductForm
 
 
 # Create your views here.
-def all_products(request):
+def skydive_packages(request):
     """View all products and packages"""
-    products = Product.objects.all()
-    categories = None
+    
+    tandems = Product.objects.filter(category= 1)
+    films = Product.objects.filter(category= 2)
 
-    if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
+
 
     context = {
-        'products': products
+        'tandems': tandems,
+        'films' : films
+
     }
-    return render(request, 'all_products.html', context)
+    return render(request, 'skydive-packages.html', context)
 
 def film(request): 
     """Show the difference between the film experiences"""

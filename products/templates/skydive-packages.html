@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+<div class="container">
+    <h1>Custom your package</h1>
+    <br>
+
+    <div class="row">
+        {% for f in films %}
+
+        <div class="col">
+            <p>{{ f.name }}</p>
+            <p>{{ f.description }}</p>
+            <p>{{ f.category }}</p>
+            <p>{{ f.price }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

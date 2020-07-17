@@ -34,6 +34,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+        <script src="{% static 'js/main.js' %}"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -67,7 +68,7 @@
                         <div class="dropdown-menu " aria-labelledby="packages_toggle">
                             <a class="dropdown-item" href="{% url 'home' %}">Whats Tandem Skydive?</a>
                             <a class="dropdown-item" href="{% url 'day-plan' %}">Your Day</a>
-                            <a class="dropdown-item" href="{% url 'products' %}?category=tandem">Packages</a>
+                            <a class="dropdown-item" href="{% url 'skydive-packages' %}">Packages</a>
                         </div>
                     </li>
 
@@ -78,7 +79,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="merc_toggle">
                             <a class="dropdown-item" href="{% url 'film' %}">Capturing you day</a>
-                            <a class="dropdown-item" href="{% url 'products' %}?category=tshirt">Clothes</a>
+                            <a class="dropdown-item" href="">Clothes</a>
                         </div>
                     </li>
 
@@ -157,6 +158,7 @@
     {% endblock %}
 </div>
 
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
     {% block postload_js %}
     {% endblock %}
