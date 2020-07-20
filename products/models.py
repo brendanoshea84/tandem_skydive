@@ -29,3 +29,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Jumper(models.Model):
+    jumper_Name = models.CharField(max_length=254)
+    jumper_Date_Of_Birth = models.DateField()
+     
+
+    def __str__(self):
+        return self.name      

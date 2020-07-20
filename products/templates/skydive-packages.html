@@ -2,20 +2,59 @@
 {% load static %}
 
 {% block main_content %}
+<br>
 <div class="container">
     <h1>Custom your package</h1>
     <br>
+ 
 
     <div class="row">
-        {% for f in films %}
-
-        <div class="col">
-            <p>{{ f.name }}</p>
-            <p>{{ f.description }}</p>
-            <p>{{ f.category }}</p>
-            <p>{{ f.price }}</p>
+        <div class="col-12 col-lg-6">
+            <form class="mt-3" action="" method="POST" id="jumper-info" data-tandem_id="{{ product.id }}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <br>
+                {% for t in tandems %}
+                
+                <div class="text-muted"> Cost for a tandem {{ t.price }} kr</div>
+            <br>
+                {% endfor %}
+            </form>
         </div>
-        {% endfor %}
+        <div class="col-12 col-lg-6">
+            <div class="tandom_camera"></div>   
+        </div>
+
     </div>
+
+    <br>
+    <hr>
+    <div class="text-muted">
+        <h2>film package</h2>
+
+        <div class="row">
+            {% for f in films %}
+
+            <div class="col-sm-12 col-md-4">
+                <p><b>{{ f.name }}</b></p>
+                <p>{{ f.description }}</p>
+                
+                <p>+ {{ f.price }} kr</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <br>
+    <select class="" name="film_selection" id='film_selection' data-film_id="{{ product.id }}">
+        
+        <option >No Thank-you</option>
+        {% for f in films %}
+        <option id="{{ f.pk }}" cost="{{ f.price }}">{{ f.name }}</option>
+        {% endfor %}
+        
+    </select>
+    <br>
+    <br>
 </div>
 {% endblock %}

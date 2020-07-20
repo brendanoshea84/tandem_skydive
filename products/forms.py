@@ -1,19 +1,22 @@
 from django import forms
-from .models import Product, Category
+from .models import Jumper
 
 
-
-class ProductForm(forms.ModelForm):
-
+class JumperProfileForm(forms.ModelForm):
     class Meta:
-        model = Product
+        model = Jumper
         fields = '__all__'
-
-      
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        categories = Category.objects.all()
-        friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
-
-        self.fields['category'].choices = friendly_names
         
+
+    def __init__(self, *args, **kwargs):
+        """
+        Add placeholders and classes, remove auto-generated
+        labels and set autofocus on first field
+        """
+        super().__init__(*args, **kwargs)
+        placeholders = {
+            'jumper_name': 'Name',
+            'jumper_dob': 'Date of Birth',
+            
+            
+        }
