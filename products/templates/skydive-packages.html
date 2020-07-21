@@ -10,7 +10,8 @@
 
     <div class="row">
         <div class="col-12 col-lg-6">
-            <form class="mt-3" action="" method="POST" id="jumper-info" data-tandem_id="{{ product.id }}">
+            <form class="mt-3" method="POST" id="jumper-info" data-tandem_id="{{ product.id }}" 
+            action="{% url 'add_to_bag' %}">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <br>
@@ -19,7 +20,10 @@
                 <div class="text-muted"> Cost for a tandem {{ t.price }} kr</div>
             <br>
                 {% endfor %}
+                <input type="submit" class="" value="Add to Bag">
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </form>
+            
         </div>
         <div class="col-12 col-lg-6">
             <div class="tandom_camera"></div>   
