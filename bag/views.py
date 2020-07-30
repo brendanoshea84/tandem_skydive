@@ -26,15 +26,23 @@ def add_to_bag(request):
 
     customer =({'name': name,'dob': dob})
 
-    if bag == {}:
-        print("stage 1")    
-        bag[0] = customer
-
-    else:
-        print("stage 2")   
+    if request.method == 'POST':
         test = len(bag)
-        print(test)
         bag[test] = customer
+
+
+
+
+
+    # if bag == {}:
+    #     print("stage 1")    
+    #     bag[0] = customer
+
+    # else:
+    #     print("stage 2")   
+    #     test = len(bag)
+    #     print(test)
+    #     bag[test] = customer
 
     
     print("stage 4")
