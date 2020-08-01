@@ -2,7 +2,6 @@ from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
 from products.models import Product, Jumper
-# Create your views here.
 
 
 def view_bag(request):
@@ -14,67 +13,27 @@ def view_bag(request):
 def add_to_bag(request):
     """ Add a quantity of the specified product to the shopping bag """
 
-    product = get_object_or_404(Product, pk=1)
+    # Get tandem and film packages 
+    tandem = get_object_or_404(Product, pk=1)
+    film_package = get_object_or_404(Product, pk=product.id)
 
-    redirect_url = request.POST.get('redirect_url')
+    # Get jumper details
     name = request.POST.get('jumper_Name')
     dob = request.POST.get('jumper_Date_Of_Birth')
 
+    # Page redirect and get bag
     bag = request.session.get('bag', {})
+    redirect_url = request.POST.get('redirect_url')
     
-    print("stage 1")
-
-    customer =({'name': name,'dob': dob})
-
+   
     if request.method == 'POST':
         test = len(bag)
+        customer =({'id': test, 'name': name,'dob': dob})
         bag[test] = customer
 
-
-
-
-
-    # if bag == {}:
-    #     print("stage 1")    
-    #     bag[0] = customer
-
-    # else:
-    #     print("stage 2")   
-    #     test = len(bag)
-    #     print(test)
-    #     bag[test] = customer
-
     
-    print("stage 4")
     request.session['bag'] = bag
     
     print(bag)
-
-
-
-
-# if bag == {}:
-#         bag = customer
-#     else:    
-#         bag.append(customer)
-
-       
-# session = [{"stuff": "things"},]
-
-# bag = []
-# customer = [{"name": "michael", "dob": "yonks ago"}, {"name": "michael2", "dob": "younger than michael"}]
-
-# if customer:
-#         for i in customer:
-#                 bag.append(i)
-
-# session.append({"bag": bag})
-
-# print(session)
-
-
-
-
-
 
     return redirect(redirect_url)
