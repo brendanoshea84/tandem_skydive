@@ -7,33 +7,54 @@ from products.models import Product, Jumper
 def view_bag(request):
     """ A view that renders the bag contents page """
 
-    return render(request, 'bag/bag.html')
+    # bag_items = []
+    # bag = request.session.get('bag', {})
+
+    # # bag = request.session['bag']
+
+    # tandem = get_object_or_404(Product, pk=1)
+ 
+    # context = {
+        
+    #     'bag': bag,
+    #     'tandem': tandem
+    # }
+
+    return render(request, 'bag.html')
 
 
 def add_to_bag(request):
-    """ Add a quantity of the specified product to the shopping bag """
-
-    # Get tandem and film packages 
-    tandem = get_object_or_404(Product, pk=1)
-    film_package = get_object_or_404(Product, pk=product.id)
+    """ Add Jumper with details of products and basic information """
 
     # Get jumper details
     name = request.POST.get('jumper_Name')
-    dob = request.POST.get('jumper_Date_Of_Birth')
+    phone= request.POST.get('jumper_Phone_Number')
+    film = request.POST['film_selection']
 
     # Page redirect and get bag
     bag = request.session.get('bag', {})
     redirect_url = request.POST.get('redirect_url')
     
-   
+ 
     if request.method == 'POST':
         test = len(bag)
-        customer =({'id': test, 'name': name,'dob': dob})
+        customer =({'id': test, 'name': name, 'phone': phone, 'tandem': '1', 'film': film})
+        
         bag[test] = customer
 
-    
-    request.session['bag'] = bag
-    
-    print(bag)
+        if request.POST.get('another'):
+            request.session['bag'] = bag
+            
+            print('views 111111111111')
+            print(bag)
+            return redirect(redirect_url)
+            
+        if request.POST.get('checkout'): 
+            request.session['bag'] = bag
+            print('views 222')
+            print(bag) 
+            return render(request, 'bag.html')
 
-    return redirect(redirect_url)
+    
+
+    

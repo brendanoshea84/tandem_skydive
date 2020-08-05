@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime 
 
 
 class Category(models.Model):
@@ -31,8 +32,9 @@ class Product(models.Model):
         return self.name
 
 class Jumper(models.Model):
-    jumper_Name = models.CharField(max_length=254)
-    jumper_Date_Of_Birth = models.DateField()
+    jumper_Name = models.CharField(max_length=254, null=False, blank=False)
+    jumper_Phone_Number = models.CharField(max_length=20, null=True, blank=True)
+
      
 
     def __str__(self):

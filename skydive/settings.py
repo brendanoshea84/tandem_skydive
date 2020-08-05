@@ -49,9 +49,12 @@ INSTALLED_APPS = [
     'products',
     'profiles',
     'bag',
+    'checkout',
 
     # Other
     'crispy_forms',
+    'bootstrap4',
+    'bootstrap_datepicker'
 ]
 
 MIDDLEWARE = [
@@ -82,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request', # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bag.contexts.bag_contents',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -195,3 +199,4 @@ SOCIALACCOUNT_PROVIDERS = {
         'VERSION': 'v7.0',
     }
 }
+

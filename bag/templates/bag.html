@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block main_content %}
+
+<h1>Testing bag</h1>
+
+
+{% for stuff in bag_items %}
+
+    {{ stuff.name }}
+    
+    {{ stuff.phone }}
+<br>
+{% endfor %}
+
+
+{% endblock %}
+            
+
