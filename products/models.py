@@ -33,7 +33,8 @@ class Product(models.Model):
 
 class Jumper(models.Model):
     jumper_Name = models.CharField(max_length=254, null=False, blank=False)
-    jumper_Phone_Number = models.CharField(max_length=20, null=True, blank=True)
+    Phone_Number = models.CharField(max_length=20, null=True, blank=True)
+    Email = models.EmailField(max_length=40, null=False, blank=False, default="")
 
      
 

@@ -9,9 +9,17 @@
 
 {% for stuff in bag_items %}
 
-    {{ stuff.name }}
+    <p>Jumper Name: {{ stuff.name }}</p>
     
-    {{ stuff.phone }}
+    <p>Phone Number: {{ stuff.phone }}</p>
+    
+    <p>Email: {{ stuff.email }}</p>
+
+    <p>Tandem: {{ stuff.tandem.price }}</p>
+    <p>Film: {{ stuff.film.description }} {{ stuff.film.price }}</p>
+    <hr>
+    
+
 <br>
 {% endfor %}
 

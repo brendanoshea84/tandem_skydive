@@ -36,7 +36,7 @@
     <br>
     <hr>
     <div class="text-muted">
-        <h2>film package</h2>
+        <h2>Film Package</h2>
 
         <div class="row">
             {% for f in films %}
@@ -56,7 +56,7 @@
     <div class="row">
     <select class="" name="film_selection" id='film_selection' >
 
-        <option value=None>1. No Thank-you</option>
+        <option value=2>1. No Thank-you</option>
         {% for f in films %}
         <option value="{{ f.pk }}">{{ f.pk }}. {{ f.name }}  +{{ f.price }}kr</option>
         {% endfor %}

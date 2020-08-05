@@ -7,24 +7,26 @@ def bag_contents(request):
     bag = request.session.get('bag', {})
 
     for key, value in bag.items():
-        
-        test = value.get('name')
-        test2 = value.get('phone')
+        tandem = int(value.get('tandem'))
+        tandem = get_object_or_404(Product, pk=tandem)
+        film = int(value.get('film'))
+        film = get_object_or_404(Product, pk=film)
 
         bag_items.append({
-            'name': test,
-            'phone': test2
-            
+            'name' : value.get('name'),
+            'phone' : value.get('phone'),
+            'email' : value.get('email'),
+            'film' : film,
+            'tandem' : tandem
             })
+            
        
     context = {
         'bag': bag,
         'bag_items': bag_items,
-        'test': test,
-        'test2': test2
         
+           
     }     
 
-   
     print('contexts!!!!!!!')
     return context   

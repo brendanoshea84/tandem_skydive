@@ -15,15 +15,26 @@
       "pk": 2,
       "model": "products.product",
       "fields": {
-        "sku": "film1",
-        "name": "Handcamera",
-        "description": "Get your skydive experience captured by a hand camera filmed by the Tandom Master",
-        "price": 500,
+        "sku": "film0",
+        "name": "No thank you",
+        "description": "No filming of the jump",
+        "price": 0,
         "category": 2
       }
     },
     {
       "pk": 3,
+      "model": "products.product",
+      "fields": {
+        "sku": "film1",
+        "name": "Handcamera",
+        "description": "Get your skydive experience captured by a hand camera filmed by the Tandem Master",
+        "price": 500,
+        "category": 2
+      }
+    },
+    {
+      "pk": 4,
       "model": "products.product",
       "fields": {
         "sku": "film2",
@@ -34,7 +45,7 @@
       }
     },
     {
-      "pk": 4,
+      "pk": 5,
       "model": "products.product",
       "fields": {
         "sku": "film3",
@@ -45,7 +56,7 @@
       }
     },
     {
-      "pk": 5,
+      "pk": 6,
       "model": "products.product",
       "fields": {
         "sku": "shirt1",

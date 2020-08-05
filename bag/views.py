@@ -7,19 +7,6 @@ from products.models import Product, Jumper
 def view_bag(request):
     """ A view that renders the bag contents page """
 
-    # bag_items = []
-    # bag = request.session.get('bag', {})
-
-    # # bag = request.session['bag']
-
-    # tandem = get_object_or_404(Product, pk=1)
- 
-    # context = {
-        
-    #     'bag': bag,
-    #     'tandem': tandem
-    # }
-
     return render(request, 'bag.html')
 
 
@@ -28,7 +15,8 @@ def add_to_bag(request):
 
     # Get jumper details
     name = request.POST.get('jumper_Name')
-    phone= request.POST.get('jumper_Phone_Number')
+    phone= request.POST.get('Phone_Number')
+    email= request.POST.get('Email')
     film = request.POST['film_selection']
 
     # Page redirect and get bag
@@ -38,7 +26,7 @@ def add_to_bag(request):
  
     if request.method == 'POST':
         test = len(bag)
-        customer =({'id': test, 'name': name, 'phone': phone, 'tandem': '1', 'film': film})
+        customer =({'id': test, 'name': name, 'phone': phone, 'email': email, 'tandem': '1', 'film': film})
         
         bag[test] = customer
 
@@ -50,6 +38,7 @@ def add_to_bag(request):
             return redirect(redirect_url)
             
         if request.POST.get('checkout'): 
+            print('reesttt')
             request.session['bag'] = bag
             print('views 222')
             print(bag) 
