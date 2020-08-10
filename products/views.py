@@ -26,6 +26,6 @@ def skydive_packages(request):
 
 
 
-def film(request): 
+def merchandise(request): 
     """Show the difference between the film experiences"""
-    return render(request, 'film.html')   
+    return render(request, 'merchandise.html')   

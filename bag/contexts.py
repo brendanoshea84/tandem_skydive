@@ -12,12 +12,15 @@ def bag_contents(request):
         film = int(value.get('film'))
         film = get_object_or_404(Product, pk=film)
 
+        subtotal = tandem.price + film.price
+
         bag_items.append({
             'name' : value.get('name'),
             'phone' : value.get('phone'),
             'email' : value.get('email'),
             'film' : film,
-            'tandem' : tandem
+            'tandem' : tandem,
+            'subtotal': subtotal
             })
             
        

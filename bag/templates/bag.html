@@ -3,27 +3,41 @@
 
 
 {% block main_content %}
+<div class="container">
+    <br>
+    <h1 class="col font-blue">Your Basket</h1>
+    <br>
+</div>
 
-<h1>Testing bag</h1>
+<div class="row justify-content-center">
+    <div class="custom-container ">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-6">STuff</div>
+            <div class="col-md-12 col-lg-6">
+                {% if bag_items %}
+                {% for stuff in bag_items %}
 
+                <p>Jumper Name: {{ stuff.name}}</p>
+                <p>Phone Number: {{ stuff.phone }}</p>
+                <p>Email: {{ stuff.email }}</p>
+                <p>Tandem: {{ stuff.tandem.price }}</p>
+                <p>Film: {{ stuff.film.name }} {{ stuff.film.price }}</p>
+                sub: {{ stuff.subtotal }}
+                <hr>
+                <br>
+                {% endfor %}
+                {% else %}
+                <p class="lead mb-5">Your bag is empty.</p>
+                <a href="{% url 'skydive-packages' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Shopping</span>
+                </a>
 
-{% for stuff in bag_items %}
-
-    <p>Jumper Name: {{ stuff.name }}</p>
-    
-    <p>Phone Number: {{ stuff.phone }}</p>
-    
-    <p>Email: {{ stuff.email }}</p>
-
-    <p>Tandem: {{ stuff.tandem.price }}</p>
-    <p>Film: {{ stuff.film.description }} {{ stuff.film.price }}</p>
-    <hr>
-    
-
-<br>
-{% endfor %}
-
-
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
-            
-

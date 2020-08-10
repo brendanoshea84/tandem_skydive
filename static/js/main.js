@@ -15,3 +15,13 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
+
+// Modal for policies    
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+  $(function(){
+    $('#closeModal').click(function(){
+         $('#myModal').modal('hide');
+     });
+ });

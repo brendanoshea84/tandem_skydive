@@ -10,15 +10,22 @@
 .ground {
     background: url('/media/photos/ground.jpg') no-repeat;
     background-size: 100% 100%;
-    max-width: 80%;
+    max-width: 60%;
     height: 250px; 
+    margin: auto;
+}
+.map {
+    background: url('/media/photos/map.png') no-repeat;
+    background-size: 100% 100%;
+    max-width: 100%;
+    height: 600px; 
     margin: auto;
 }
 
 .plane-dive {
     background: url('/media/photos/plane_dive.jpg') no-repeat;
     background-size: 100% 100%;
-    max-width: 80%;
+    max-width: 70%;
     height: 250px; 
     margin: auto;
 }
@@ -30,7 +37,6 @@
     height: 250px; 
     margin: auto;
 }
-
 
 
 
@@ -73,6 +79,7 @@
 
 .slide-height {
     height: 40vh;
+    width: 100vw;
 }
 
 .cover {
@@ -100,7 +107,10 @@
     
     
 }
-
+.custom-container {
+    width: 70vw;
+    
+}
 .bg {
     background-color: rgb(214, 238, 255, .25)
 }
@@ -109,6 +119,9 @@
     color: rgb(63, 98, 235);
 }
 
+.row{
+    margin: 0;
+}
 @media (max-width: 991px) {
     .slide-height {
         height: 20vh;

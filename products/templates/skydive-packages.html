@@ -3,8 +3,9 @@
 
 {% block main_content %}
 <br>
-<div class="container" style="padding-left: 30px;">
-    <h1>Custom your package</h1>
+<div class="container">
+    <h1 class="col font-blue">Custom your Package</h1>
+    
     <br>
 
 
@@ -21,7 +22,7 @@
                     {% for t in tandems %}
 
                     <div class="text-muted"> Cost for a tandem {{ t.price }} kr</div>
-                    {{ date|crispy }}
+                    
                     <br>
                     {% endfor %}
 
@@ -37,17 +38,21 @@
     <hr>
     <div class="text-muted">
         <h2>Film Package</h2>
-
+        <br>
         <div class="row">
             {% for f in films %}
+                {% if f.pk == 2 %}
 
-            <div class="col-sm-12 col-md-4">
-                
-                <p><b>{{ f.name }}</b></p>
-                <p>{{ f.description }}</p>
+                {% else %}
 
-                <p>+ {{ f.price }} kr</p>
-            </div>
+                <div class="col-sm-12 col-md-4">
+                   
+                    <p><b>{{ f.name }}</b></p>
+                    <p>{{ f.description }}</p>
+
+                    <p>+ {{ f.price }} kr</p>
+                </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
@@ -56,9 +61,8 @@
     <div class="row">
     <select class="" name="film_selection" id='film_selection' >
 
-        <option value=2>1. No Thank-you</option>
         {% for f in films %}
-        <option value="{{ f.pk }}">{{ f.pk }}. {{ f.name }}  +{{ f.price }}kr</option>
+        <option value="{{ f.pk }}"> {{ f.name }}  +{{ f.price }}kr</option>
         {% endfor %}
 
     </select>
