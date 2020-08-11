@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import EnquirerForm
-from django.core.mail import send_mail
+from django.core.mail import send_mass_mail
 
 # Create your views here.
 
@@ -19,12 +19,27 @@ def contact_us(request):
 
         'form' : form,    
     }
+
+    Name = request.POST.get('Name')
+    Phone_Number= request.POST.get('Phone_Number')
+    Email= request.POST.get('Email')
+    Subject= request.POST.get('Subject')
+    Question= request.POST.get('Question')
+
+
     if request.method == 'POST':
-        send_mail('Hello from SkyDive Goteborg',
-        'We have recieved your question/message and one of our staff will response as quickly as possible',
+        send_mail=(
+        ('Hello from SkyDive Goteborg',
+        'We have recieved your question/message about '+ Subject +' and one of our staff will response as quickly as possible!',
         'projects4bos@gmail.com',
-        ['b_oshea_84@hotmail.com'],
-        fail_silently=False)
+        [Email]),
+
+        ('from '+ Email +' '+Subject,
+        Question,
+        Email,
+        ['projects4bos@gmail.com'])
+        )
+        send_mass_mail(send_mail)
         return redirect(reverse('contact-us'))
 
     return render(request, 'home/contact-us.html', context)    
