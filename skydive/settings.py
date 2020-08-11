@@ -51,12 +51,10 @@ INSTALLED_APPS = [
     'products',
     'profiles',
     'bag',
-    'checkout',
 
     # Other
     'crispy_forms',
     'bootstrap4',
-    'bootstrap_datepicker'
 ]
 
 MIDDLEWARE = [

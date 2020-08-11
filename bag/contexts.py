@@ -24,17 +24,12 @@ def bag_contents(request):
             'film' : film,
             'tandem' : tandem,
             'subtotal': subtotal,
-            
             })
             
-       
     context = {
         'bag': bag,
         'bag_items': bag_items,
-        'grand_total': grand_total,
-        
-           
+        'grand_total': grand_total,    
     }     
 
-    print('contexts!!!!!!!')
     return context   

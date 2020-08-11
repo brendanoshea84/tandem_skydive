@@ -20,12 +20,3 @@ def skydive_packages(request):
     }
     return render(request, 'skydive-packages.html', context)
 
-
-    
-
-
-
-
-def merchandise(request): 
-    """Show the difference between the film experiences"""
-    return render(request, 'merchandise.html')   
