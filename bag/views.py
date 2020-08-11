@@ -27,28 +27,32 @@ def add_to_bag(request):
 
     if request.POST.get('another'):
         request.session['bag'] = bag
-        test = len(bag)
-        customer =({'id': test, 'name': name, 'phone': phone, 'email': email, 'tandem': '1', 'film': film})
+        id = len(bag)
+        customer =({'id': id, 'name': name, 'phone': phone, 'email': email, 'tandem': '1', 'film': film})
         
-        bag[test] = customer
-        
-        print('views 111111111111')
-        print(bag)
+        bag[id] = customer
+
         return redirect(redirect_url)
         
     if request.POST.get('checkout'): 
 
         request.session['bag'] = bag
-        test = len(bag)
-        customer =({'id': test, 'name': name, 'phone': phone, 'email': email, 'tandem': '1', 'film': film})
+        id = len(bag)
+        customer =({'id': id, 'name': name, 'phone': phone, 'email': email, 'tandem': '1', 'film': film})
         
-        bag[test] = customer
+        bag[id] = customer
+  
+        return redirect('view_bag')
+
+
+def remove_from_bag(request, item_id):
+    
+    bag = request.session.get('bag', {})
+    bag.pop(item_id)    
+    request.session['bag'] = bag
+    return HttpResponse(status=200)
 
     
-        print('views 222')
-        print(bag) 
-        
-        return redirect('view_bag')
         
 
         

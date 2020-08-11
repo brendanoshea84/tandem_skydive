@@ -131,6 +131,10 @@
     }
 }
 
+
+.asteriskField {
+    display: none;
+}
 /* back to top button */
 #myBtn {
     display: none; /* Hidden by default */

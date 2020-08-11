@@ -10,10 +10,7 @@ class JumperProfileForm(forms.ModelForm):
         
 
     def __init__(self, *args, **kwargs):
-        """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
-        """
+
         super().__init__(*args, **kwargs)
         
         

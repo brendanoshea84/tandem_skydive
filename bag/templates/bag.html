@@ -5,27 +5,71 @@
 {% block main_content %}
 <div class="container">
     <br>
-    <h1 class="col font-blue">Your Basket</h1>
+    <h1 class="col font-blue">Checkout</h1>
     <br>
 </div>
-
 <div class="row justify-content-center">
-    <div class="custom-container ">
-        <div class="row justify-content-center">
+    <div class="custom-container">
+
+        <div class="row ">
             <div class="col-md-12 col-lg-6">STuff</div>
+
             <div class="col-md-12 col-lg-6">
                 {% if bag_items %}
-                {% for stuff in bag_items %}
+                {% for bag in bag_items %}
+                {% csrf_token %}
+                <div class="row">
 
-                <p>Jumper Name: {{ stuff.name}}</p>
-                <p>Phone Number: {{ stuff.phone }}</p>
-                <p>Email: {{ stuff.email }}</p>
-                <p>Tandem: {{ stuff.tandem.price }}</p>
-                <p>Film: {{ stuff.film.name }} {{ stuff.film.price }}</p>
-                sub: {{ stuff.subtotal }}
-                <hr>
-                <br>
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-10">
+                                <h3>{{ bag.name}}</h3>
+                            </div>
+                            <div class="col-1"><i class="fa fa-edit"></i>
+                            </div>
+                            <div class="col-1"><a class="fa fa-trash-alt remove-item" id="remove_{{ bag.id }}"></a>
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4">Contact Details:</div>
+                            <div class="col-8">{{ bag.phone }}</div>
+                            <div class="col-4"></div>
+                            <div class="col-8">{{ bag.email }}</div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-4">Packages:</div>
+                            <div class="col-6">Tandem Jump </div>
+                            <div class="col-2 float-left">  {{ bag.tandem.price}} kr</div>
+                            {% if bag.film.sku != "film0" %}
+                            <div class="col-4"></div>
+                            <div class="col-6">{{ bag.film.name }}</div>
+                            <div class="col-2 float-left">{{ bag.film.price  }} kr</div>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-4">Sub-Total:</div>
+                            <div class="col-6"></div>
+                            <div class="col-2 float-left">{{ bag.subtotal }} kr</div>
+                        </div>
+                        <hr>
+                        <br>
+                    </div>
+
+
+
+                </div>
                 {% endfor %}
+
+                
+                <h4>Grand Total = {{ grand_total }} kr</h4>
+                
+
+                
                 {% else %}
                 <p class="lead mb-5">Your bag is empty.</p>
                 <a href="{% url 'skydive-packages' %}" class="btn btn-outline-black rounded-0 btn-lg">
@@ -39,5 +83,21 @@
             </div>
         </div>
     </div>
-</div>
-{% endblock %}
+
+    <script type="text/javascript">
+
+        // Remove item and reload on click
+        $('.remove-item').click(function (e) {
+            var itemId = $(this).attr('id').split('remove_')[1];
+            console.log("remove " + itemId)
+            var url = `/bag/remove/${itemId}/`;
+            var csrfToken = "{{ csrf_token }}";
+            var data = { 'csrfmiddlewaretoken': csrfToken };
+
+            $.post(url, data)
+                .done(function () {
+                    location.reload();
+                });
+        })
+    </script>
+    {% endblock %}

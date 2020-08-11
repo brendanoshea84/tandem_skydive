@@ -22,7 +22,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=0)
     image = models.ImageField(null=True, blank=True)
     
 
@@ -31,7 +31,7 @@ class Product(models.Model):
 
 class Jumper(models.Model):
     jumper_Name = models.CharField(max_length=254, null=False, blank=False)
-    Phone_Number = models.CharField(max_length=20, null=True, blank=True)
+    Phone_Number = models.CharField(max_length=20, null=False, blank=False)
     Email = models.EmailField(max_length=40, null=False, blank=False, default="")
 
      
