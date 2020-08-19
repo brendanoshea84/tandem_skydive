@@ -1,26 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 
-
-
-
 {% block main_content %}
+<div class="container">
+    <div class="row">
+        <h1 class="font-blue">Your Profile</h1>
+    </div>
+    <br>
+
+    <h4> Welcome {{ user.get_username }}!</h4>
 <br>
-
-<h2>My Profile</h2>
-<h4> Welcome {{ user.get_username }}!</h4>
-
-<div class="row">
-    <div class="col-12 col-lg-6">
-        <p class="text-muted">Default Delivery Information</p>
-        <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
-            {% csrf_token %}
-            {% load crispy_forms_tags %}
+    <div class="row">
+        <div class="col-12 col-lg-6">
             
-            {{ form.default_phone_number|as_crispy_field }}
-            {{ form.default_postcode|as_crispy_field }}
-            <button class="btn btn-black rounded-0 text-uppercase float-right">Update Information</button>
-        </form>
+            <form class="mx-1 px-4" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-success btn-lg float-right">Update Information</button>
+            </form>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="profile mx-1 px-4"></div>
+        </div>
     </div>
 </div>
-{% endblock %}
+    {% endblock %}
