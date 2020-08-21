@@ -76,10 +76,14 @@ def view_bag(request):
             order.original_bag = json.dumps(bag)
            
             order.save()
+     
+
 
             print(order)
             print("testing org bag")
             print(order.original_bag)
+            print("line 97")
+           
 
 
 
