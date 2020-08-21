@@ -5,14 +5,10 @@
 <br>
 <div class="container">
     <h1 class="col font-blue">Custom your Package</h1>
-    
     <br>
-
 
     <div class="row">
         <form class="w-100" method="POST" id="jumper-info" action="{% url 'add_to_bag' %}">
-
-
             <div class="row">
                 <div class="col-12 col-lg-6">
 
@@ -20,12 +16,9 @@
                     {{ form|crispy }}
                     <br>
                     {% for t in tandems %}
-
                     <div class="text-muted"> Cost for a tandem {{ t.price }} kr</div>
-                    
                     <br>
                     {% endfor %}
-
 
                 </div>
                 <div class="col-12 col-lg-6">
@@ -41,50 +34,47 @@
         <br>
         <div class="row">
             {% for f in films %}
-                {% if f.pk == 2 %}
+            {% if f.pk == 2 %}
+            {% else %}
 
-                {% else %}
-
-                <div class="col-sm-12 col-md-4">
-                   
-                    <p><b>{{ f.name }}</b></p>
-                    <p>{{ f.description }}</p>
-
-                    <p>+ {{ f.price }} kr</p>
-                </div>
-                {% endif %}
+            <div class="col-sm-12 col-md-4">
+                <p><b>{{ f.name }}</b></p>
+                <p>{{ f.description }}</p>
+                <p>+ {{ f.price }} kr</p>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
 
     <br>
-    <div class="row">
-    <select class="" name="film_selection" id='film_selection' >
-
-        {% for f in films %}
-        <option value="{{ f.pk }}"> {{ f.name }}  +{{ f.price }}kr</option>
-        {% endfor %}
-
-    </select>
-</div>
-<br>
-<div class="container ">
+    <div class="row justify-content-center">
+        <select class="col-sm-9 col-lg-6" name="film_selection" id='film_selection'>
+            {% for f in films %}
+            <option value="{{ f.pk }}"> {{ f.name }} +{{ f.price }}kr</option>
+            {% endfor %}
+        </select>
+    </div>
     <br>
-    <div class="row ">
+    <div class="container ">
         <br>
-        <div class="col-6 d-flex justify-content-center">
-        <input type="submit" class="btn btn-success btn-lg float-center" value="Add another Jumper" name="another">
+        <div class="row ">
+            <br>
+            <div class="col-md-6 col-sm-12 d-flex justify-content-center pt-4">
+                <input type="submit" class="btn btn-success btn-lg float-center" value="Add another Jumper"
+                    name="another">
+            </div>
+            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+            <br>
+
+            <div class="col-md-6 col-sm-12 d-flex justify-content-center pt-4">
+                <input type="submit" class="btn btn-success btn-lg" value="Go to Checkout" name="checkout">
+            </div>
+            </form>
+            <br>
+            <br>
+        </div>
     </div>
-        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-        <br>
-        <div class="col-6 d-flex justify-content-center">
-        <input type="submit" class="btn btn-success btn-lg" value="Go to Checkout" name="checkout">
-    </div>
-        </form>
-        <br>
-        <br>
-    </div>
-</div>
 </div>
 <br>
 

@@ -18,8 +18,9 @@
 .map {
     background: url('/media/photos/map.png') no-repeat;
     background-size: 100% 100%;
-    max-width: 100%;
-    height: 600px;
+    
+    width: 400px;
+    height: 400px;
     margin: auto;
 }
 
@@ -34,7 +35,7 @@
 .tandom_camera {
     background: url('/media/photos/tandom_with_camera.jpg') no-repeat;
     background-size: 100% 100%;
-    max-width: 60%;
+    max-width: 250px;
     height: 250px;
     margin: auto;
 }
@@ -201,4 +202,25 @@
 
 .toast-capper {
     height: 2px;
+}
+
+
+
+
+
+
+@media (max-width: 991px) {
+    .tandom_camera {
+        height: 200px;
+    }
+    .map {
+        height: 200px;
+    }
+    .ground {
+        height: 150px;
+        width: 175px;
+    }
+    .plane-dive{
+        height: 200px;
+    }
 }

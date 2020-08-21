@@ -68,8 +68,8 @@
                                 checked>
                             {% else %}
                             <label class="form-check-label" for="id-save-info">
-                                <a class="text-info" href="">Create an account</a> or
-                                <a class="text-info" href="">login</a> to save this information
+                                <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
+                                <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
                             </label>
                             {% endif %}
                         </div>
@@ -130,18 +130,18 @@
                         <div class="row">
                             <div class="col-4">Packages:</div>
                             <div class="col-6">Tandem Jump </div>
-                            <div class="col-2 float-left"> {{ bag.tandem.price}} kr</div>
+                            <div class="col-2 float-left"> {{ bag.tandem.price}}kr</div>
                             {% if bag.film.sku != "film0" %}
                             <div class="col-4"></div>
                             <div class="col-6">{{ bag.film.name }}</div>
-                            <div class="col-2 float-left">{{ bag.film.price  }} kr</div>
+                            <div class="col-2 float-left">{{ bag.film.price }}kr</div>
                             {% endif %}
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-4">Sub-Total:</div>
                             <div class="col-6"></div>
-                            <div class="col-2">{{ bag.subtotal }} kr</div>
+                            <div class="col-2">{{ bag.subtotal }}kr</div>
                         </div>
                         <hr>
                         <br>

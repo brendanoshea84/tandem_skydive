@@ -15,6 +15,8 @@ from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 
+from django.core.mail import send_mass_mail
+
 import stripe
 import json
 import time
@@ -65,33 +67,21 @@ def view_bag(request):
             'street_address2': request.POST['street_address2'], 
         }
 
-        print("67")
         order_form = OrderForm(form_data)
-        print("69")
 
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            print("ERROR 73")
             pid = request.POST.get('client_secret').split('_secret')[0]
-            print("71 PID works")
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
+           
             order.save()
 
             print(order)
-            print("testing")
-            print(bag)
-
-            # order_line_item = bag
-            # order_line_item.save()
-            # print("!!!!!!!!!!!!")
-            # print(order_line_item)
-
-            # for key, value in bag.items():
-            #     order_line_item = OrderLineItem
+            print("testing org bag")
+            print(order.original_bag)
 
 
-                    
 
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
@@ -212,25 +202,23 @@ def checkout_success(request, order_number):
                 'default_town_or_city': order.town_or_city,
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
-                'default_county': order.county,
+                'default_county': order.country,
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+
 
     if 'bag' in request.session:
         del request.session['bag']
 
-    template = 'checkout_success.html'
+   
     context = {
         'order': order,
     }
 
-    return render(request, template, context)
+    return render(request, 'checkout_success.html', context)
 
 
 
