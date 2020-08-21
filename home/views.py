@@ -16,7 +16,6 @@ def contact_us(request):
     """A page for map and address/ email us"""
     form = EnquirerForm()
     context = {
-
         'form' : form,    
     }
 
@@ -26,14 +25,12 @@ def contact_us(request):
     Subject= request.POST.get('Subject')
     Question= request.POST.get('Question')
 
-
     if request.method == 'POST':
         send_mail=(
         ('Hello from SkyDive Goteborg',
         'We have recieved your question/message about '+ Subject +' and one of our staff will response as quickly as possible!',
         'projects4bos@gmail.com',
         [Email]),
-
         ('from '+ Email +' '+Subject,
         Question,
         Email,

@@ -1,5 +1,4 @@
 import uuid
-import json
 
 from django.db import models
 from django.db.models import Sum
@@ -9,6 +8,7 @@ from django_countries.fields import CountryField
 
 from products.models import Product
 from profiles.models import UserProfile
+import jsonfield
 
 
 
@@ -29,8 +29,10 @@ class Order(models.Model):
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     
-    original_bag = models.CharField(max_length=254, null=False, blank=False)
+    original_bag = jsonfield.JSONField()
+    
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    
 
     
 
@@ -52,7 +54,5 @@ class Order(models.Model):
 
     def __str__(self):
         return self.order_number
-
-        
 
 

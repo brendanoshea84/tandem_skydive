@@ -52,15 +52,20 @@
                 </div>
 
 
-                {{order.original_bag}}
+                {{ list }}
                 <h3>works</h3>
                 <br>
-                {% for value in order.original_bag %}
+
+               
                 
-                {{value}}
+                {% for key, value in list.items %}
+                
+                {{ key }}
                 <h2>test</h2>
+                {{ value.name }}
                 
                 {% endfor %}
+                <h4>tes</h4>
                 {% endblock %}
             </div>
         </div>

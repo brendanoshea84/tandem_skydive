@@ -54,7 +54,6 @@ def view_bag(request):
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
-        print("line 54")
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -74,25 +73,12 @@ def view_bag(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
-           
             order.save()
      
-
-
-            print(order)
-            print("testing org bag")
-            print(order.original_bag)
-            print("line 97")
-           
-
-
-
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
-
-
-
             return redirect(reverse('checkout_success', args=[order.order_number]))
+
         else:
             print("error at 95")
             messages.error(request, 'There was an error with your form. \
@@ -112,7 +98,6 @@ def view_bag(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-
         # Attempt to prefill the form with any info the user maintains in their profile
         if request.user.is_authenticated:
             try:
@@ -126,13 +111,11 @@ def view_bag(request):
                     'town_or_city': profile.default_town_or_city,
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
-                    
                 })
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
         else:
             order_form = OrderForm()
-
 
     context = {
         'order_form': order_form,
@@ -140,10 +123,6 @@ def view_bag(request):
         'time' : time,
         'client_secret': intent.client_secret,
     }
-
-    print("146")
-    print(intent.client_secret)
-
 
     return render(request, 'bag.html', context)
 
@@ -177,7 +156,6 @@ def add_to_bag(request):
 
 
 def remove_from_bag(request, item_id):
-    
     bag = request.session.get('bag', {})
     del bag[item_id]    
     request.session['bag'] = bag
@@ -198,7 +176,7 @@ def checkout_success(request, order_number):
         order.save()
 
         # Save the user's info
-        if save_info:
+        if save_info: 
             profile_data = {
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
@@ -212,24 +190,15 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-
-
     if 'bag' in request.session:
         del request.session['bag']
 
-   
+    test = order.original_bag 
+    test123 = json.loads(test)
+
     context = {
         'order': order,
+        'list': test123
     }
 
     return render(request, 'checkout_success.html', context)
-
-
-
-
-
-
-
-
-
-
