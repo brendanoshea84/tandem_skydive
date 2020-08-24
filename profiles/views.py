@@ -6,6 +6,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 from bag.models import Order
+import json
 
 def profile(request):
     """ Display the user's profile. """
@@ -15,32 +16,53 @@ def profile(request):
         form = UserProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect(reverse('skydive-packages'))
+            return redirect(reverse('profile'))
         else:
             messages.error(request, 'Update failed. Ensure the form is valid')    
     else:            
         form = UserProfileForm(instance=profile)
     
-    orders = profile.orders.all()
 
+
+
+    orders = profile.orders.all()
+    print(orders)
+    print("test")
+    
+    # print(profile.full_name)
+
+    # bag_items = []
+    # orginal = json.loads(orders.original_bag)
+
+    # for key, value in orginal.items():
+    #     tandem = int(value.get('tandem'))
+    #     tandem = get_object_or_404(Product, pk=tandem)
+    #     film = int(value.get('film'))
+    #     film = get_object_or_404(Product, pk=film)
+
+    #     bag_items.append({
+    #         'name' : value.get('name'),
+    #         'phone' : value.get('phone'),
+    #         'email' : value.get('email'),
+    #         'film' : film,
+    #         'tandem' : tandem,
+    #         })
+
+
+    
     template = 'profile.html'
     context = {
         'form': form,
-        'orders': Order,
-        'on_profile_page': True
+        'orders': orders,
+        'on_profile_page': True,
+        # 'bag_items': bag_items
     }
 
     return render(request, template, context)
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
-
-    messages.info(request, (
-        f'This is a past confirmation for order number {order_number}. '
-        'A confirmation email was sent on the order date.'
-    ))
-
-    template = 'checkout/checkout_success.html'
+    template = 'checkout_success.html'
     context = {
         'order': order,
         'from_profile': True,

@@ -10,7 +10,9 @@ class UserProfile(models.Model):
     Base for creating a user: for purchases as well as a profile
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    default_full_name = models.CharField(max_length=80, null=True, blank=True)
     default_phone_number = models.CharField(max_length=20, null=True, blank=True)
+    default_email = models.EmailField(max_length=30, null=True, blank=True)
     default_street_address1 = models.CharField(max_length=80, null=True, blank=True)
     default_street_address2 = models.CharField(max_length=80, null=True, blank=True)
     default_town_or_city = models.CharField(max_length=40, null=True, blank=True)

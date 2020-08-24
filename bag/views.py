@@ -36,7 +36,7 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
-        print("36")    
+   
         return HttpResponse(content=e, status=400)
 
 
@@ -80,11 +80,11 @@ def view_bag(request):
             return redirect(reverse('checkout_success', args=[order.order_number]))
 
         else:
-            print("error at 95")
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
+
     else:
-        print("102")
+       
         bag = request.session.get('bag', {})
         if not bag:
             return redirect(reverse('skydive-packages'))
@@ -103,8 +103,8 @@ def view_bag(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
+                    'full_name': profile.default_full_name,
+                    'email': profile.default_email,
                     'phone_number': profile.default_phone_number,
                     'country': profile.default_country,
                     'postcode': profile.default_postcode,
@@ -149,6 +149,8 @@ def add_to_bag(request):
         customer =({'id': id, 'name': name, 'phone': phone, 'email': email, 'tandem': '1', 'film': film})
         bag[id] = customer
 
+        messages.success(request, f'Jump ticket for {name} was added!')
+
         if request.POST.get('another'):
             return redirect(redirect_url)
         if request.POST.get('checkout'):
@@ -157,8 +159,11 @@ def add_to_bag(request):
 
 def remove_from_bag(request, item_id):
     bag = request.session.get('bag', {})
+    
     del bag[item_id]    
     request.session['bag'] = bag
+
+    HttpResponse(status=200)
     return redirect('view_bag') 
 
 
@@ -178,6 +183,7 @@ def checkout_success(request, order_number):
         # Save the user's info
         if save_info: 
             profile_data = {
+                'default_full_name': order.full_name,
                 'default_phone_number': order.phone_number,
                 'default_country': order.country,
                 'default_postcode': order.postcode,
@@ -193,12 +199,28 @@ def checkout_success(request, order_number):
     if 'bag' in request.session:
         del request.session['bag']
 
-    test = order.original_bag 
-    test123 = json.loads(test)
+
+    bag_items = []
+    orginal = json.loads(order.original_bag)
+
+    for key, value in orginal.items():
+        tandem = int(value.get('tandem'))
+        tandem = get_object_or_404(Product, pk=tandem)
+        film = int(value.get('film'))
+        film = get_object_or_404(Product, pk=film)
+
+        bag_items.append({
+            'name' : value.get('name'),
+            'phone' : value.get('phone'),
+            'email' : value.get('email'),
+            'film' : film,
+            'tandem' : tandem,
+            })
+
 
     context = {
         'order': order,
-        'list': test123
+        'bag_items': bag_items
     }
 
     return render(request, 'checkout_success.html', context)

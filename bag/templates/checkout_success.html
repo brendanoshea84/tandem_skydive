@@ -6,7 +6,7 @@
     </div>
 </div>
 {% endblock %} {% block main_content %}
-<div class="overlay"></div>
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -19,14 +19,14 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-lg-7">
+        <div class="col-12">
             <div class="order-confirmation-wrapper p-2 border">
                 <div class="row">
                     <div class="col">
                         <small class="text-muted">Order Info:</small>
                     </div>
                 </div>
-
+                <br>
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <p class="mb-0 text-black font-weight-bold">Order Number</p>
@@ -44,30 +44,45 @@
                         <p class="mb-0">{{ order.date }}</p>
                     </div>
                 </div>
-
+                <hr>
                 <div class="row">
                     <div class="col">
                         <small class="text-muted">Order Details:</small>
                     </div>
                 </div>
-
-
-                {{ list }}
-                <h3>works</h3>
                 <br>
 
-               
-                
-                {% for key, value in list.items %}
-                
-                {{ key }}
-                <h2>test</h2>
-                {{ value.name }}
-                
+                {% for value in bag_items %}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <p class="mb-0 font-weight-bold">{{ value.name }}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12  text-md-right">
+                            <p class="mb-0">1 x Tandem Jump</p>
+                        </div>
+                    </div>
+                    {% if value.film.sku != "film0" %}
+                    <div class="row">
+                        <div class="col-12  text-md-right">
+                            <p class="mb-0">1 x {{ value.film.name }}</p>
+
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <br>
                 {% endfor %}
-                <h4>tes</h4>
-                {% endblock %}
             </div>
+            <br>
+            
+
+            {% endblock %}
         </div>
     </div>
+</div>
+</div>
 </div>
