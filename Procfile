@@ -1,1 +1,1 @@
-web: gunicorn tandom_skydive.wsgi:application
+web: gunicorn goteborg-skydive.wsgi:application
