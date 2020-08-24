@@ -24,9 +24,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['skydive-goteborg.herokuapp.com', '127.0.0.1']
+
+ALLOWED_HOSTS = ['goteborg-skydive.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -130,11 +130,13 @@ WSGI_APPLICATION = 'skydive.wsgi.application'
 
 
 if 'DATABASE_URL' in os.environ:
+    DEBUG = False
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
     import env
+    DEBUG = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
