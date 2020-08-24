@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django_countries.fields import CountryField
 
 
+
 class UserProfile(models.Model):
     """
     Base for creating a user: for purchases as well as a profile
@@ -21,7 +22,7 @@ class UserProfile(models.Model):
     default_country = CountryField(blank_label='Country', null=True, blank=True)
 
     superusers = User.objects.filter(is_superuser=True)
-    print(superusers)
+    
 
     def __str__(self):
         return self.user.username

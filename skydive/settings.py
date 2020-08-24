@@ -128,16 +128,16 @@ WSGI_APPLICATION = 'skydive.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-DATABASES = {
-        'default': dj_database_url.parse('postgres://dateorcxxoliyw:cad1e92d7be865a6b554fb122beb765f6582bc9a456e9e5b0f65c84cdc35a60e@ec2-176-34-123-50.eu-west-1.compute.amazonaws.com:5432/d9gshenkopk795')
-    }
-
 # DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#         }
+#         'default': dj_database_url.parse('postgres://dateorcxxoliyw:cad1e92d7be865a6b554fb122beb765f6582bc9a456e9e5b0f65c84cdc35a60e@ec2-176-34-123-50.eu-west-1.compute.amazonaws.com:5432/d9gshenkopk795')
 #     }
+
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
