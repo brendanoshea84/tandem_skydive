@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from products.models import Product
+
 from .models import UserProfile
 from .forms import UserProfileForm
 
@@ -23,49 +25,45 @@ def profile(request):
         form = UserProfileForm(instance=profile)
     
 
-
-
     orders = profile.orders.all()
     print(orders)
     print("test")
-    
-    # print(profile.full_name)
 
-    # bag_items = []
-    # orginal = json.loads(orders.original_bag)
-
-    # for key, value in orginal.items():
-    #     tandem = int(value.get('tandem'))
-    #     tandem = get_object_or_404(Product, pk=tandem)
-    #     film = int(value.get('film'))
-    #     film = get_object_or_404(Product, pk=film)
-
-    #     bag_items.append({
-    #         'name' : value.get('name'),
-    #         'phone' : value.get('phone'),
-    #         'email' : value.get('email'),
-    #         'film' : film,
-    #         'tandem' : tandem,
-    #         })
-
-
-    
+  
     template = 'profile.html'
     context = {
         'form': form,
         'orders': orders,
         'on_profile_page': True,
-        # 'bag_items': bag_items
+
     }
 
     return render(request, template, context)
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+    bag_items = []
+    orginal = json.loads(order.original_bag)
+
+    for key, value in orginal.items():
+        tandem = int(value.get('tandem'))
+        tandem = get_object_or_404(Product, pk=tandem)
+        film = int(value.get('film'))
+        film = get_object_or_404(Product, pk=film)
+
+        bag_items.append({
+            'name' : value.get('name'),
+            'phone' : value.get('phone'),
+            'email' : value.get('email'),
+            'film' : film,
+            'tandem' : tandem,
+            })
+
     template = 'checkout_success.html'
     context = {
         'order': order,
         'from_profile': True,
+        'bag_items': bag_items
     }
 
     return render(request, template, context)    

@@ -20,21 +20,27 @@
             </form>
         </div>
         <div class="col-12 col-lg-6">
-
-            <h3>tesing order</h3>
+            {% if orders %}
+            <h3>Previous Order</h3>
+            
             {% for order in orders %}
-            <tr>
-                <td>
+            <div>
+                <div class="row">
                     <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
-                        {{ order.order_number|truncatechars:6 }}
+                        {{ order.order_number }}
                     </a>
-                </td>
-                <td>{{ order.date }}</td>
+                </div>
+                {{ order.date }}
 
-                <td>{{ order.full_name }}</td>
-            </tr>
+                
+            </div>
             <br>
             {% endfor %}
+            {% else %}
+            
+            <h5 class="text-muted">No Previous Orders</h5>
+            {% endif %}
+
         </div>
     </div>
 </div>

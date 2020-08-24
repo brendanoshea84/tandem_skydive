@@ -1,11 +1,9 @@
-{% extends "base.html" %} {% load static %} {% block extra_css %}
-<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}"> {% endblock %} {% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
-    </div>
-</div>
-{% endblock %} {% block main_content %}
+{% extends "base.html" %} {% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bag.css' %}">
+{% endblock %}
+
+{% block main_content %}
 
 <div class="container">
     <div class="row">
@@ -78,11 +76,15 @@
                 {% endfor %}
             </div>
             <br>
-            
 
-            {% endblock %}
+
+
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+        <a href="javascript: history.go(-1)" class="btn btn-success btn-lg float-right">Go Back</a>
+    </div>
+    </div>
 </div>
-</div>
-</div>
+{% endblock %}
