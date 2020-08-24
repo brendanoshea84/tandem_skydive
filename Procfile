@@ -1,1 +1,1 @@
-web: gunicorn goteborg-skydive.wsgi:application
+web: gunicorn skydive.wsgi:application
