@@ -55,6 +55,7 @@ def view_bag(request):
     if request.method == 'POST':
         bag = request.session.get('bag', {})
 
+
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -64,7 +65,9 @@ def view_bag(request):
             'town_or_city': request.POST['town_or_city'],
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'], 
+
         }
+
 
         order_form = OrderForm(form_data)
 
@@ -75,6 +78,9 @@ def view_bag(request):
             order.original_bag = json.dumps(bag)
             order.save()
      
+
+
+
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[order.order_number]))
@@ -191,6 +197,7 @@ def checkout_success(request, order_number):
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_county': order.country,
+
             }
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():

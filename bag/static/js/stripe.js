@@ -40,7 +40,6 @@ card.addEventListener('change', function(event) {
       `;
         $(errorDiv).html(html);
     } else {
-        console.log("stage 42")
         errorDiv.textContent = '';
     }
 });
@@ -49,7 +48,6 @@ card.addEventListener('change', function(event) {
 var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
-    console.log("52")
     ev.preventDefault();
     card.update({ 'disabled': true });
     $('#submit-button').attr('disabled', true);
@@ -67,7 +65,6 @@ form.addEventListener('submit', function(ev) {
     var url = '/bag/cache_checkout_data/';
 
     $.post(url, postData).done(function() {
-        console.log("js 69")
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -102,14 +99,11 @@ form.addEventListener('submit', function(ev) {
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
                       form.submit();
-                      console.log("this works 102")
                 }
             }
         });
         
     }).fail(function() {
-        // just reload the page, the error will be in django messages
-        console.log("error 109")
-        // location.reload();
+        location.reload();
     })
 });

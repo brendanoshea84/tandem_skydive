@@ -131,7 +131,8 @@
 }
 
 .bg {
-    background-color: rgb(214, 238, 255, .25)
+    background-color: rgb(214, 238, 255, .25);
+    height: 100%;
 }
 
 .font-blue {
@@ -230,5 +231,12 @@
     }
     .plane-dive{
         height: 200px;
+    }
+}
+
+
+@media (max-width: 575px) {
+    .custom-container {
+        width: 100vw;
     }
 }
