@@ -1,14 +1,4 @@
 /* Photos */
-.ground,
-.map,
-.plane-dive,
-.tandom_camera,
-.profile,
-.symbol {
-    background-size: 100% 100%;
-    margin: auto;
-}
-
 .top-img {
     background: url('/media/photos/wide_screen.jpg') no-repeat; 
     background-size: 100% 100%; 
@@ -19,39 +9,52 @@
 
 .ground {
     background: url('/media/photos/ground.jpg') no-repeat;
+    background-size: 100% 100%;
     max-width: 60%;
-    height: 250px; 
+    height: 250px;
+    margin: auto;
+ 
 }
 
 .map {
     background: url('/media/photos/map.png') no-repeat;
+    background-size: 100% 100%;
     width: 400px;
-    height: 400px; 
+    height: 400px;
+    margin: auto;
 }
 
 .plane-dive {
-    background: url('/media/photos/plane_dive.jpg') no-repeat; 
+    background: url('/media/photos/plane_dive.jpg') no-repeat;
+    background-size: 100% 100%; 
     max-width: 70%;
     height: 250px;
+    margin: auto;
 }
 
 .tandom_camera {
     background: url('/media/photos/tandom_with_camera.jpg') no-repeat;
+    background-size: 100% 100%;
     max-width: 250px;
     height: 250px;
+    margin: auto;
 }
 
 .profile {
     background: url('/media/photos/leaving_plane3.jpg') no-repeat;
+    background-size: 100% 100%;
     max-width: 100%;
-    height: 400px;   
+    height: 400px;
+    margin: auto;  
 }
 
 .symbol {
     background: url('/media/photos/symbol.jpg') no-repeat;
+    background-size: 100% 100%;
     width: 50px;
     height: 50px;
     margin-top: 10px;
+
 }
 
 /* Text */
