@@ -23,15 +23,12 @@ var card = elements.create('card', {style: style});
 card.mount('#card-element');
 
 
-
-
 // Handle realtime validation errors on the card element
 
 card.addEventListener('change', function(event) {
     var errorDiv = document.getElementById('card-errors');
     
     if (event.error) {
-        console.log("stage 33")
         var html = `
           <span class="icon" role="alert">
               <i class="fas fa-times"></i>
@@ -85,7 +82,6 @@ form.addEventListener('submit', function(ev) {
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
-                console.log("error at 88")
                 var html = `
                   <span class="icon" role="alert">
                   <i class="fas fa-times"></i>
