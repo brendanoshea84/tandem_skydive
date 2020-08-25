@@ -14,12 +14,10 @@
                 <hr class="mt-1 mb-3">
             </div>
         </div>
-
+        {% if not on_profile_page %}
         <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">
-            <span class="text-uppercase">Go To Secure Checkout</span>
-            <span class="icon">
-                <i class="fas fa-lock"></i>
-            </span>
+            <span >Go To Secure Checkout</span>
+            {% endif %}
         </a>
     </div>
 </div>

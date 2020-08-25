@@ -126,6 +126,10 @@
     padding: 0px 5% 0px 10px;
 }
 
+.shopping-basket{
+    padding-top: 15px;
+}
+
 /* Film */
 .film {
     width: 100%;
@@ -211,6 +215,6 @@
 
 @media (max-width: 575px) {
     .custom-container {
-        width: 100vw;
+        width: 90vw;
     }
 }

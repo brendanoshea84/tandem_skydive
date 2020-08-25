@@ -26,16 +26,11 @@ def profile(request):
     
 
     orders = profile.orders.all()
-    print(orders)
-    print("test")
-
-  
     template = 'profile.html'
     context = {
         'form': form,
         'orders': orders,
         'on_profile_page': True,
-
     }
 
     return render(request, template, context)

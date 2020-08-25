@@ -56,7 +56,7 @@
             </button>
 
 
-            <div class="collapse navbar-collapse px-2" id="main-nav">
+            <div class="collapse navbar-collapse px-2 " id="main-nav">
 
                 <ul class="navbar-nav ml-auto list-inline text-center">
 
@@ -85,9 +85,6 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="account_toggle">
                             {% if request.user.is_authenticated %}
-                            {% if request.user.is_superuser %}
-                            <a href="#" class="dropdown-item">Product Management</a>
-                            {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'view_bag' %}" class="dropdown-item">Checkout</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
