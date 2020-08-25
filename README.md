@@ -76,6 +76,13 @@ As the developer for the site, my goals are to make the site professional and he
     1. Information about skydive göteborg with a link to google maps and their telephone.   
 1. My Accounts:
     1. User can register to the site with their email, and password.
+    1. Once logged in, user can see their previous orders. 
+    1. User can easily change their details and also their details will be passed on to for fill insurance for the skydive jump, allowing quicker time at the drop zone.
+1. Checkout:
+    1. As the jumper could be different from the customer, the payment form can be customized including the billing details.
+    1. A finally summary is shown and allows the users to either remove a package or add a package.
+    1. A sub-cost per jumper experience is shown as well as an over all cost.
+
 
 
 ## Features Left to Implement ##
@@ -83,8 +90,11 @@ As the developer for the site, my goals are to make the site professional and he
     - Once the customer has purchased their package. The next step is to book a date and time. As the plane has limited seats and the company changes location half way through summer. I would need to create a large booking service. As such, I had limited time and will be implemented at a later date.
     - A summary of bookings per day for for required staff.
     - Each jumper gets their own ticket receipt.
+    - A jumper could change their bookings using their loggin or id from their purchase
 1. Live google maps:
     - While the page has a image and a link to google map. I would like to implement a google search directly into the website.
+1. Facebook loggin:
+    - This would help advertise the experience and allow user feedback on both Facebook and the website.    
 
 
 

@@ -48,7 +48,7 @@
 <body>
     <div class="container-fluid fixed-top ">
         <nav class="navbar navbar-expand-md navbar-light bg-white ">
-            <a class=" symbol" href="{% url 'home' %}" alt="Göteborg skydive icon"></a>
+            <a class=" symbol" href="{% url 'home' %}"></a>
 
             <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#main-nav"
                 aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,21 +103,21 @@
         </nav>
     </div>
     {% if messages %}
-        <div class="message-container">
-            {% for message in messages %}
-                {% with message.level as level %}
-                    {% if level == 40 %}
-                        {% include 'includes/toasts/toast_error.html' %}
-                    {% elif level == 30 %}
-                        {% include 'includes/toasts/toast_warning.html' %}
-                    {% elif level == 25 %}
-                        {% include 'includes/toasts/toast_success.html' %}
-                    {% else %}
-                        {% include 'includes/toasts/toast_info.html' %}
-                    {% endif %}
-                {% endwith %}
-            {% endfor %}
-        </div>
+    <div class="message-container">
+        {% for message in messages %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toasts/toast_success.html' %}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+    </div>
     {% endif %}
     <hr>
 
@@ -188,17 +188,17 @@
             </div>
         </div>
     </div>
-
+    <br>
     <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
 
     {% block postload_js %}
-    <script type="text/javascript">
+    <script>
         $('.toast').toast('show');
     </script>
     {% endblock %}
 
 
 </body>
-<br>
+
 
 </html>
