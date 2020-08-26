@@ -1,25 +1,20 @@
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404
 )
-from products.models import Product, Jumper
-from products.forms import JumperProfileForm
-
+from products.models import Product
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
 from .forms import OrderForm
 from .models import Order
-# , OrderLineItem
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
-
-from django.core.mail import send_mass_mail
-
 import stripe
 import json
 import time
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -31,22 +26,15 @@ def cache_checkout_data(request):
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
-        print("31")
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
-   
         return HttpResponse(content=e, status=400)
 
 
 def view_bag(request):
     """ A view that renders the bag contents page """
-    print("testing view bag")
-    """ Time picker for bookings """
-    time = []
-    for t in range(9,18):
-        time.append(t)
 
     """ Stripe payment """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -54,7 +42,6 @@ def view_bag(request):
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
-
 
         form_data = {
             'full_name': request.POST['full_name'],
@@ -64,10 +51,8 @@ def view_bag(request):
             'postcode': request.POST['postcode'],
             'town_or_city': request.POST['town_or_city'],
             'street_address1': request.POST['street_address1'],
-            'street_address2': request.POST['street_address2'], 
-
+            'street_address2': request.POST['street_address2'],
         }
-
 
         order_form = OrderForm(form_data)
 
@@ -77,20 +62,14 @@ def view_bag(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
-     
-
-
-
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
-
+            return redirect(
+                reverse('checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
-
     else:
-       
         bag = request.session.get('bag', {})
         if not bag:
             return redirect(reverse('skydive-packages'))
@@ -104,7 +83,7 @@ def view_bag(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        # Attempt to prefill the form with any info the user maintains in their profile
+        # Attempt to prefill the form
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -126,20 +105,18 @@ def view_bag(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'time' : time,
+        'time': time,
         'client_secret': intent.client_secret,
     }
-
     return render(request, 'bag.html', context)
 
 
 def add_to_bag(request):
     """ Add Jumper with details of products and basic information """
-
     # Get jumper details
     name = request.POST.get('jumper_Name')
-    phone= request.POST.get('Phone_Number')
-    email= request.POST.get('Email')
+    phone = request.POST.get('Phone_Number')
+    email = request.POST.get('Email')
     film = request.POST['film_selection']
 
     # Page redirect and get bag
@@ -148,11 +125,14 @@ def add_to_bag(request):
 
     if request.method == 'POST':
         request.session['bag'] = bag
+        # Find a new id for each new jumper
         if bag:
-            id = max([int(i['id']) for i in bag.values()]) + 1 
-        else :    
+            id = max([int(i['id']) for i in bag.values()]) + 1
+        else:
             id = 0
-        customer =({'id': id, 'name': name, 'phone': phone, 'email': email, 'tandem': '1', 'film': film})
+        customer = ({
+            'id': id, 'name': name, 'phone': phone, 'email': email,
+            'tandem': '1', 'film': film})
         bag[id] = customer
 
         messages.success(request, f'Jump ticket for {name} was added!')
@@ -160,17 +140,17 @@ def add_to_bag(request):
         if request.POST.get('another'):
             return redirect(redirect_url)
         if request.POST.get('checkout'):
-            return redirect('view_bag')     
+            return redirect('view_bag')
 
 
 def remove_from_bag(request, item_id):
     bag = request.session.get('bag', {})
-    
-    del bag[item_id]    
+
+    del bag[item_id]
     request.session['bag'] = bag
 
     HttpResponse(status=200)
-    return redirect('view_bag') 
+    return redirect('view_bag')
 
 
 def checkout_success(request, order_number):
@@ -187,7 +167,7 @@ def checkout_success(request, order_number):
         order.save()
 
         # Save the user's info
-        if save_info: 
+        if save_info:
             profile_data = {
                 'default_full_name': order.full_name,
                 'default_phone_number': order.phone_number,
@@ -206,7 +186,6 @@ def checkout_success(request, order_number):
     if 'bag' in request.session:
         del request.session['bag']
 
-
     bag_items = []
     orginal = json.loads(order.original_bag)
 
@@ -217,13 +196,12 @@ def checkout_success(request, order_number):
         film = get_object_or_404(Product, pk=film)
 
         bag_items.append({
-            'name' : value.get('name'),
-            'phone' : value.get('phone'),
-            'email' : value.get('email'),
-            'film' : film,
-            'tandem' : tandem,
+            'name': value.get('name'),
+            'phone': value.get('phone'),
+            'email': value.get('email'),
+            'film': film,
+            'tandem': tandem,
             })
-
 
     context = {
         'order': order,

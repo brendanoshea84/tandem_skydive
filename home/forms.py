@@ -1,12 +1,11 @@
 from django import forms
 from .models import Enquirer
 
+
 class EnquirerForm(forms.ModelForm):
     class Meta:
         model = Enquirer
         fields = ('Name', 'Phone_Number', 'Email', 'Subject', 'Question')
-
-        
 
     def __init__(self, *args, **kwargs):
         """

@@ -17,19 +17,18 @@ def bag_contents(request):
         subtotal = tandem.price + film.price
         grand_total += subtotal
         bag_items.append({
-            'id' : value.get('id'),
-            'name' : value.get('name'),
-            'phone' : value.get('phone'),
-            'email' : value.get('email'),
-            'film' : film,
-            'tandem' : tandem,
+            'id': value.get('id'),
+            'name': value.get('name'),
+            'phone': value.get('phone'),
+            'email': value.get('email'),
+            'film': film,
+            'tandem': tandem,
             'subtotal': subtotal,
             })
-            
     context = {
         'bag': bag,
         'bag_items': bag_items,
-        'grand_total': grand_total,    
-    }     
+        'grand_total': grand_total,
+        }
 
-    return context   
+    return context

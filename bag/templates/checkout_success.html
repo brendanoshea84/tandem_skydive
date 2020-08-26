@@ -1,10 +1,5 @@
-{% extends "base.html" %} {% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/bag.css' %}">
-{% endblock %}
-
-{% block main_content %}
-
+{% extends "base.html" %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/bag.css' %}"> {% endblock %} {% block main_content %}
 <div class="container">
     <div class="row">
         <div class="col">
@@ -48,9 +43,7 @@
                         <small class="text-muted">Order Details:</small>
                     </div>
                 </div>
-                <br>
-
-                {% for value in bag_items %}
+                <br> {% for value in bag_items %}
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12 ">
@@ -72,8 +65,7 @@
                     </div>
                     {% endif %}
                 </div>
-                <br>
-                {% endfor %}
+                <br> {% endfor %}
             </div>
             <br>
 
@@ -83,8 +75,8 @@
     </div>
     <div class="row">
         <div class="col">
-        <a href="javascript: history.go(-1)" class="btn btn-success btn-lg float-right">Go Back</a>
-    </div>
+            <a href="javascript: history.go(-1)" class="btn btn-success btn-lg float-right">Go Back</a>
+        </div>
     </div>
 </div>
 {% endblock %}

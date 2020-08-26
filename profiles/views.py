@@ -1,15 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 from products.models import Product
-
 from .models import UserProfile
 from .forms import UserProfileForm
 
 from bag.models import Order
-import json
 
+
+@login_required
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -20,10 +19,9 @@ def profile(request):
             form.save()
             return redirect(reverse('profile'))
         else:
-            messages.error(request, 'Update failed. Ensure the form is valid')    
-    else:            
+            messages.error(request, 'Update failed. Ensure the form is valid')
+    else:
         form = UserProfileForm(instance=profile)
-    
 
     orders = profile.orders.all()
     template = 'profile.html'
@@ -35,10 +33,11 @@ def profile(request):
 
     return render(request, template, context)
 
+
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     bag_items = []
-    orginal = json.loads(order.original_bag)
+    orginal = order.original_bag
 
     for key, value in orginal.items():
         tandem = int(value.get('tandem'))
@@ -47,12 +46,12 @@ def order_history(request, order_number):
         film = get_object_or_404(Product, pk=film)
 
         bag_items.append({
-            'name' : value.get('name'),
-            'phone' : value.get('phone'),
-            'email' : value.get('email'),
-            'film' : film,
-            'tandem' : tandem,
-            })
+            'name': value.get('name'),
+            'phone': value.get('phone'),
+            'email': value.get('email'),
+            'film': film,
+            'tandem': tandem,
+        })
 
     template = 'checkout_success.html'
     context = {
@@ -61,4 +60,4 @@ def order_history(request, order_number):
         'bag_items': bag_items
     }
 
-    return render(request, template, context)    
+    return render(request, template, context)

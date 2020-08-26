@@ -1,7 +1,5 @@
-
 from django import forms
 from .models import Order
-from bootstrap_datepicker_plus import DatePickerInput
 
 
 class OrderForm(forms.ModelForm):
@@ -9,7 +7,7 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = ('full_name', 'email', 'phone_number',
                   'street_address1', 'street_address2',
-                  'town_or_city', 'postcode', 'country', 
+                  'town_or_city', 'postcode', 'country'
                   )
 
     def __init__(self, *args, **kwargs):
@@ -26,8 +24,7 @@ class OrderForm(forms.ModelForm):
             'town_or_city': 'Town or City',
             'street_address1': 'Street Address 1',
             'street_address2': 'Street Address 2',
-            
-        }
+            }
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
         for field in self.fields:
@@ -39,15 +36,3 @@ class OrderForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
-
-
-class Time(forms.Form):
-
-    date = forms.DateField()
-    def clean_date(self):
-        date = self.cleaned_data['date']
-        if date < datetime.date.today():
-            raise forms.ValidationError("Please select a future date!")
-        return date
-
-

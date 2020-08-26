@@ -1,7 +1,4 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block main_content %}
+{% extends "base.html" %} {% load static %} {% block main_content %}
 <div class="container">
     <div class="row">
         <h1 class="font-blue">Your Profile</h1>
@@ -14,15 +11,13 @@
         <div class="col-12 col-lg-6">
 
             <form class="mx-1 px-4" action="{% url 'profile' %}" method="POST" id="profile-update-form">
-                {% csrf_token %}
-                {{ form|crispy }}
+                {% csrf_token %} {{ form|crispy }}
                 <button class="btn btn-success btn-lg float-right">Update Information</button>
             </form>
         </div>
         <div class="col-12 col-lg-6">
             {% if orders %}
             <h3>Previous Order</h3>
-            
             {% for order in orders %}
             <div>
                 <div class="row">
@@ -31,22 +26,11 @@
                     </a>
                 </div>
                 {{ order.date }}
-
-                
             </div>
-            <br>
-            {% endfor %}
-            {% else %}
-            
+            <br> {% endfor %} {% else %}
             <h5 class="text-muted">No Previous Orders</h5>
             {% endif %}
-
         </div>
     </div>
 </div>
-<br>
-
-
-
-
-{% endblock %}
+<br> {% endblock %}

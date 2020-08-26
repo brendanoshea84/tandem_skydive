@@ -7,10 +7,6 @@ class JumperProfileForm(forms.ModelForm):
         model = Jumper
         fields = '__all__'
 
-        
-
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
-        
-        

@@ -8,39 +8,21 @@
     <!-- Required meta tags -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    {% block corecss %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% block corecss %}
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css"
-        integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" integrity="sha384-xxzQGERXS00kBmZW/6qxqJPyxW3UR0BPsL4c8ILaIWXva5kFi7TxkIIaMiKtqV1Q" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
-
-    {% block extra_css %}
-    {% endblock %}
-
-    {% block corejs %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"> {% endblock %} {% block extra_css %} {% endblock %} {% block corejs %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <script src="{% static 'js/main.js' %}"></script>
     <script src="https://js.stripe.com/v3/"></script>
-    {% endblock %}
-
-    {% block extra_js %}
-    {% endblock %}
+    {% endblock %} {% block extra_js %} {% endblock %}
 
     <title>Tandem Skydive</title>
 </head>
@@ -50,8 +32,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white ">
             <a class=" symbol" href="{% url 'home' %}"></a>
 
-            <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#main-nav"
-                aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -61,8 +42,7 @@
                 <ul class="navbar-nav ml-auto list-inline text-center">
 
                     <li class="nav-item dropdown ml-auto">
-                        <a class="nav-link" href="#" id="packages_toggle" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="#" id="packages_toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             SkyDive Packages
                         </a>
                         <div class="dropdown-menu " aria-labelledby="packages_toggle">
@@ -79,23 +59,21 @@
                     </li>
 
                     <li class="nav-item dropdown ml-auto">
-                        <a class="nav-link " href="#" id="account_toggle" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link " href="#" id="account_toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             My Account
                         </a>
                         <div class="dropdown-menu" aria-labelledby="account_toggle">
                             {% if request.user.is_authenticated %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'view_bag' %}" class="dropdown-item">Checkout</a>
-                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                            {% else %}
+                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> {% else %}
                             <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-                            {% endif %}
+                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> {% endif %}
                         </div>
                     </li>
-                    <li class="nav-item ml-auto shopping-basket"><a class="fa fa-shopping-cart" aria-hidden="true"
-                            href="{% url 'view_bag' %}"></a></li>
+                    <li class="nav-item ml-auto shopping-basket">
+                        <a class="fa fa-shopping-cart" aria-hidden="true" href="{% url 'view_bag' %}"></a>
+                    </li>
                 </ul>
 
             </div>
@@ -104,19 +82,11 @@
     </div>
     {% if messages %}
     <div class="message-container">
-        {% for message in messages %}
-        {% with message.level as level %}
-        {% if level == 40 %}
-        {% include 'includes/toasts/toast_error.html' %}
-        {% elif level == 30 %}
-        {% include 'includes/toasts/toast_warning.html' %}
-        {% elif level == 25 %}
-        {% include 'includes/toasts/toast_success.html' %}
-        {% else %}
-        {% include 'includes/toasts/toast_info.html' %}
-        {% endif %}
-        {% endwith %}
-        {% endfor %}
+        {% for message in messages %} {% with message.level as level %}
+        <br>{% if level == 40 %} {% include 'includes/toasts/toast_error.html' %}
+        <br>{% elif level == 30 %} {% include 'includes/toasts/toast_warning.html' %}
+        <br>{% elif level == 25 %} {% include 'includes/toasts/toast_success.html' %}
+        <br>{% else %} {% include 'includes/toasts/toast_info.html' %} {% endif %} {% endwith %} {% endfor %}
     </div>
     {% endif %}
     <hr>
@@ -131,8 +101,7 @@
                 </div>
                 <div class="row">
                     <div class="col shift-left">
-                        <a type="button" class="btn btn-success btn-lg" href="{% url 'skydive-packages' %}">Buy a
-                            Package!</a>
+                        <a type="button" class="btn btn-success btn-lg" href="{% url 'skydive-packages' %}">Buy a Package!</a>
                     </div>
                 </div>
             </div>
@@ -142,16 +111,13 @@
 
     <div class="bg">
         <br>
-        <br>
-        {% block main_content %}
-        {% endblock %}
+        <br> {% block main_content %} {% endblock %}
 
     </div>
 
 
     <!-- Modal -->
-    <div class="modal fade" id="policyModal" tabindex="-1" role="dialog" aria-labelledby="policyModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="policyModal" tabindex="-1" role="dialog" aria-labelledby="policyModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -164,10 +130,9 @@
                     <h5>Skydive Göteborg moto is 'Safety First!'</h5>
                     <br>
                     <p>As such, we the company insure our equipment, staff and policies aim for the highest quality.</p>
-                    <p>While we try to control every aspect of safety, where are things we can not control like the
-                        weather.</p>
-                    <p>We understand that on a special day, you have booked a Skydive Adventure. But we reserve the
-                        right to cancel events if the weather is terrible.</p>
+                    <p>While we try to control every aspect of safety, where are things we can not control like the weather.
+                    </p>
+                    <p>We understand that on a special day, you have booked a Skydive Adventure. But we reserve the right to cancel events if the weather is terrible.</p>
                     <p>Our Staff we help re-organise a day if this is the case.</p>
                     <hr>
                     <p>As a customer and/or jumper, please ensure the following:</p>
@@ -178,8 +143,7 @@
                         <li>No health risk (heart, broken bones or pregnancy)</li>
                         <li>This is a <b>DRUG AND ALCOHOL</b> free zone</li>
                     </ul>
-                    <p>If Skydive Göteborg believes that you are under the influence, you will be asked to take a test.
-                        If you refused, Skydive Göteborg will cancel the jump.</p>
+                    <p>If Skydive Göteborg believes that you are under the influence, you will be asked to take a test. If you refused, Skydive Göteborg will cancel the jump.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -189,9 +153,7 @@
         </div>
     </div>
     <br>
-    <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button>
-
-    {% block postload_js %}
+    <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button> {% block postload_js %}
     <script>
         $('.toast').toast('show');
     </script>

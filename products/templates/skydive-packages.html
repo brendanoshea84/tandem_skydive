@@ -1,7 +1,4 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block main_content %}
+{% extends "base.html" %} {% load static %} {% block main_content %}
 <br>
 <div class="container">
     <h1 class="col font-blue">Customize your Package</h1>
@@ -12,13 +9,10 @@
             <div class="row">
                 <div class="col-12 col-lg-6">
 
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <br>
-                    {% for t in tandems %}
+                    {% csrf_token %} {{ form|crispy }}
+                    <br> {% for t in tandems %}
                     <div class="text-muted"> Cost for a tandem {{ t.price }} kr</div>
-                    <br>
-                    {% endfor %}
+                    <br> {% endfor %}
 
                 </div>
                 <div class="col-12 col-lg-6">
@@ -33,17 +27,14 @@
         <h2>Film Package</h2>
         <br>
         <div class="row">
-            {% for f in films %}
-            {% if f.pk == 2 %}
-            {% else %}
+            {% for f in films %} {% if f.pk == 2 %} {% else %}
 
             <div class="col-sm-12 col-md-4">
                 <p><b>{{ f.name }}</b></p>
                 <p>{{ f.description }}</p>
                 <p>+ {{ f.price }} kr</p>
             </div>
-            {% endif %}
-            {% endfor %}
+            {% endif %} {% endfor %}
         </div>
     </div>
 
@@ -61,8 +52,7 @@
         <div class="row ">
             <br>
             <div class="col-md-6 col-sm-12 d-flex justify-content-center pt-4">
-                <input type="submit" class="btn btn-success btn-lg float-center" value="Add another Jumper"
-                    name="another">
+                <input type="submit" class="btn btn-success btn-lg float-center" value="Add another Jumper" name="another">
             </div>
             <input type="hidden" name="redirect_url" value="{{ request.path }}">
             <br>
@@ -76,6 +66,4 @@
         </div>
     </div>
 </div>
-<br>
-
-{% endblock %}
+<br> {% endblock %}

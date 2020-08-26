@@ -1,30 +1,42 @@
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.shortcuts import get_object_or_404
+from .models import Order
+from products.models import Product
+from profiles.models import UserProfile
+from bag.contexts import bag_contents
+import json
+import time
+from django.contrib import messages
 
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
-
     def __init__(self, request):
         self.request = request
 
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
         cust_email = order.email
-        subject = ("testing")
-        body = ("test email")
-        
+        subject = ('Your Jump Tickets from Skydive Göteborg')
+        body = render_to_string(
+            'bag/email/email_body.txt',
+            {'order': order, })
         send_mail(
             subject,
             body,
-            settings.DEFAULT_FROM_EMAIL,
+            'projects4bos@gmail.com',
             [cust_email]
-        )      
+        )
+        send_mail(send_mail)
+        messages.info('email sent')
 
     def handle_event(self, event):
         """
         Handle a generic/unknown/unexpected webhook event
         """
-        
+
         return HttpResponse(
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
@@ -41,7 +53,6 @@ class StripeWH_Handler:
         billing_details = intent.charges.data[0].billing_details
         grand_total = round(intent.charges.data[0].amount / 100, 2)
 
-
         # Update profile information if save_info was checked
         profile = None
         username = intent.metadata.username
@@ -53,8 +64,8 @@ class StripeWH_Handler:
                 profile.default_country = billing_details.address.country
                 profile.default_town_or_city = billing_details.address.city
                 profile.default_street_address1 = billing_details.address.line1
-                profile.default_street_address2 =billing_details.address.line2
-                
+                profile.default_street_address2 = billing_details.address.line2
+
                 profile.save()
 
         order_exists = False
@@ -109,12 +120,12 @@ class StripeWH_Handler:
                     film = get_object_or_404(Product, pk=film)
 
                     order_line_item.append({
-                        'name' : value.get('name'),
-                        'phone' : value.get('phone'),
-                        'email' : value.get('email'),
-                        'film' : film,
-                        'tandem' : tandem,
-                        })
+                        'name': value.get('name'),
+                        'phone': value.get('phone'),
+                        'email': value.get('email'),
+                        'film': film,
+                        'tandem': tandem,
+                    })
 
                 order_line_item.save()
 
@@ -129,7 +140,6 @@ class StripeWH_Handler:
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
-
 
     def handle_payment_intent_payment_failed(self, event):
         """
