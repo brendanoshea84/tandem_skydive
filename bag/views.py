@@ -213,21 +213,21 @@ def checkout_success(request, order_number):
             'tandem': tandem,
             })
 
-    cust_email = order.email
-    subject = ('Your Jump Tickets from Skydive Göteborg')
-    body = render_to_string(
-        'email/email_body.txt',
-        {'order': order, 'bag': bag_items})
+    # cust_email = order.email
+    # subject = ('Your Jump Tickets from Skydive Göteborg')
+    # body = render_to_string(
+    #     'email/email_body.txt',
+    #     {'order': order, 'bag': bag_items})
 
-    send_mail(
-        subject,
-        body,
-        'projects4bos@gmail.com',
-        [cust_email])
+    # send_mail(
+    #     subject,
+    #     body,
+    #     'projects4bos@gmail.com',
+    #     [cust_email])
 
-    context = {
-        'order': order,
-        'bag_items': bag_items
-    }
+    # context = {
+    #     'order': order,
+    #     'bag_items': bag_items
+    # }
 
     return render(request, 'checkout_success.html', context)
