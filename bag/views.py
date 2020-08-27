@@ -225,9 +225,9 @@ def checkout_success(request, order_number):
     #     'projects4bos@gmail.com',
     #     [cust_email])
 
-    # context = {
-    #     'order': order,
-    #     'bag_items': bag_items
-    # }
+    context = {
+        'order': order,
+        'bag_items': bag_items
+    }
 
     return render(request, 'checkout_success.html', context)
