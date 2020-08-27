@@ -18,19 +18,35 @@ class StripeWH_Handler:
 
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
+        bag_items = []
+        orginal = json.loads(order.original_bag)
+
+        for key, value in orginal.items():
+            tandem = int(value.get('tandem'))
+            tandem = get_object_or_404(Product, pk=tandem)
+            film = int(value.get('film'))
+            film = get_object_or_404(Product, pk=film)
+
+            bag_items.append({
+                'name': value.get('name'),
+                'phone': value.get('phone'),
+                'email': value.get('email'),
+                'film': film,
+                'tandem': tandem,
+                })
+
         cust_email = order.email
+
         subject = ('Your Jump Tickets from Skydive Göteborg')
         body = render_to_string(
-            'bag/email/email_body.txt',
-            {'order': order, })
+            'email/email_body.txt',
+            {'order': order, 'bag': bag_items})
+
         send_mail(
             subject,
             body,
             'projects4bos@gmail.com',
-            [cust_email]
-        )
-        send_mail(send_mail)
-        messages.info('email sent')
+            [cust_email])
 
     def handle_event(self, event):
         """
@@ -81,7 +97,6 @@ class StripeWH_Handler:
                     town_or_city__iexact=billing_details.address.city,
                     street_address1__iexact=billing_details.address.line1,
                     street_address2__iexact=billing_details.address.line2,
-                    county__iexact=billing_details.address.state,
                     grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,

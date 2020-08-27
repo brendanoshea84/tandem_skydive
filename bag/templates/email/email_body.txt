@@ -1,5 +1,11 @@
 Skydive Göteborg Confirmation for Order number: {{ order.order_number }}
 Order Date: {{ order.date }}
-Total Cost: ${{ order.order_total }}
+Total Cost: {{ order.grand_total }} kr
 
 Review:
+{% for value in bag %}
+Jumper: {{ value.name }} 
+1 x Tandem Jump: {{ value.tandem.price}} kr{% if value.film.sku != "film0" %}                 
+1 x {{ value.film.name }}: {{ value.film.price}} kr{% endif %}
+
+{% endfor %}

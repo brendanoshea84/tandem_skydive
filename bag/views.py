@@ -15,6 +15,9 @@ import stripe
 import json
 import time
 
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -59,6 +62,12 @@ def view_bag(request):
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
+
+            current_bag = bag_contents(request)
+            total = current_bag['grand_total']
+
+            order.grand_total = total
+
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
@@ -171,6 +180,7 @@ def checkout_success(request, order_number):
             profile_data = {
                 'default_full_name': order.full_name,
                 'default_phone_number': order.phone_number,
+                'default_email': order.email,
                 'default_country': order.country,
                 'default_postcode': order.postcode,
                 'default_town_or_city': order.town_or_city,
@@ -202,6 +212,18 @@ def checkout_success(request, order_number):
             'film': film,
             'tandem': tandem,
             })
+
+    cust_email = order.email
+    subject = ('Your Jump Tickets from Skydive Göteborg')
+    body = render_to_string(
+        'email/email_body.txt',
+        {'order': order, 'bag': bag_items})
+
+    send_mail(
+        subject,
+        body,
+        'projects4bos@gmail.com',
+        [cust_email])
 
     context = {
         'order': order,
