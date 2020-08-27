@@ -12,7 +12,7 @@ import dj_database_url
 
 
 # if 'DEVELOPMENT' in os.environ:
-import env
+# import env
 DEBUG = True
 # else:
 #     DEBUG = False
