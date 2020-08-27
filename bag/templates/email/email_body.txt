@@ -9,3 +9,8 @@ Jumper: {{ value.name }}
 1 x {{ value.film.name }}: {{ value.film.price}} kr{% endif %}
 
 {% endfor %}
+Thank you for your order!
+
+Sincerely,
+
+Skydive Göteborg!

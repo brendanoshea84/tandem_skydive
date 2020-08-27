@@ -127,20 +127,22 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
 
-                # order_line_item = []
-                # for key, value in json.loads(bag).items():
-                #     tandem = int(value.get('tandem'))
-                #     tandem = get_object_or_404(Product, pk=tandem)
-                #     film = int(value.get('film'))
-                #     film = get_object_or_404(Product, pk=film)
+                order_line_item = []
+                orginal = json.loads(order.original_bag)
 
-                #     order_line_item.append({
-                #         'name': value.get('name'),
-                #         'phone': value.get('phone'),
-                #         'email': value.get('email'),
-                #         'film': film,
-                #         'tandem': tandem,
-                #     })
+                for key, value in orginal.items():
+                    tandem = int(value.get('tandem'))
+                    tandem = get_object_or_404(Product, pk=tandem)
+                    film = int(value.get('film'))
+                    film = get_object_or_404(Product, pk=film)
+
+                    order_line_item.append({
+                        'name': value.get('name'),
+                        'phone': value.get('phone'),
+                        'email': value.get('email'),
+                        'film': film,
+                        'tandem': tandem,
+                    })
 
                 order_line_item.save()
 
@@ -148,7 +150,7 @@ class StripeWH_Handler:
                 if order:
                     order.delete()
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                    content=f'Webhook received error at 153: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
         
@@ -161,5 +163,5 @@ class StripeWH_Handler:
         Handle the payment_intent.payment_failed webhook from Stripe
         """
         return HttpResponse(
-            content=f'Webhook received: {event["type"]}',
+            content=f'Webhook received error at 166: {event["type"]}',
             status=200)
