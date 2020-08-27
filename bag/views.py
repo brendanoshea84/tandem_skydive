@@ -15,9 +15,6 @@ import stripe
 import json
 import time
 
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-
 
 @require_POST
 def cache_checkout_data(request):
@@ -212,18 +209,6 @@ def checkout_success(request, order_number):
             'film': film,
             'tandem': tandem,
             })
-
-    # cust_email = order.email
-    # subject = ('Your Jump Tickets from Skydive Göteborg')
-    # body = render_to_string(
-    #     'email/email_body.txt',
-    #     {'order': order, 'bag': bag_items})
-
-    # send_mail(
-    #     subject,
-    #     body,
-    #     'projects4bos@gmail.com',
-    #     [cust_email])
 
     context = {
         'order': order,

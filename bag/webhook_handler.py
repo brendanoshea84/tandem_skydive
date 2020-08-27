@@ -5,10 +5,8 @@ from django.shortcuts import get_object_or_404
 from .models import Order
 from products.models import Product
 from profiles.models import UserProfile
-from bag.contexts import bag_contents
 import json
 import time
-from django.contrib import messages
 
 
 class StripeWH_Handler:
@@ -123,6 +121,7 @@ class StripeWH_Handler:
                     town_or_city=billing_details.address.city,
                     street_address1=billing_details.address.line1,
                     street_address2=billing_details.address.line2,
+                    grand_total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
                 )
@@ -134,7 +133,6 @@ class StripeWH_Handler:
                     content=f'Webhook received error at 153: {event["type"]} | ERROR: {e}',
                     status=500)
         self._send_confirmation_email(order)
-        
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
