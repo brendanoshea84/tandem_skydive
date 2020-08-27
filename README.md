@@ -82,7 +82,7 @@ As the developer for the site, my goals are to make the site professional and he
     1. As the jumper could be different from the customer, the payment form can be customized including the billing details.
     1. A finally summary is shown and allows the users to either remove a package or add a package.
     1. A sub-cost per jumper experience is shown as well as an over all cost.
-
+    1. Once the payment has been successfully recieved from stripe, an email will be sent with the recipt for the purchase. 
 
 
 ## Features Left to Implement ##
@@ -95,10 +95,12 @@ As the developer for the site, my goals are to make the site professional and he
     - While the page has a image and a link to google map. I would like to implement a google search directly into the website.
 1. Facebook loggin:
     - This would help advertise the experience and allow user feedback on both Facebook and the website.    
+1. Extra Payment methods:
+    - Sweden was another payment (Swish) option which is very common and widely used. I would like to add this payment plan when the site goes live for Skydive Göteborg.    
 
 
 
-
+## Technologies Used ##
 
 
 

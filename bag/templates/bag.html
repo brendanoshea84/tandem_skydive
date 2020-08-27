@@ -129,7 +129,7 @@
     <div id="loading-overlay">
         <h1 class="text-light logo-font loading-spinner">
             <span class="icon">
-                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+                <i class="fas fa-3x fa-parachute-box fa-spin"></i>
             </span>
         </h1>
     </div>
@@ -138,7 +138,6 @@
     <script type="text/javascript">
         // Remove item and reload on click
         $('.remove-item').click(function(e) {
-            console.log("remove")
             var itemId = $(this).attr('id').split('remove_')[1];
             var url = `/bag/remove/${itemId}/`;
             var csrfToken = "{{ csrf_token }}";
