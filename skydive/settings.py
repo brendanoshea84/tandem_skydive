@@ -9,11 +9,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
-import env
+
 
 if 'DEVELOPMENT' in os.environ:
     DEBUG = True
 else:
+    import env
     DEBUG = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
