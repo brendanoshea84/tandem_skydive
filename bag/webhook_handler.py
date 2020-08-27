@@ -127,25 +127,6 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
 
-                order_line_item = []
-                orginal = json.loads(order.original_bag)
-
-                for key, value in orginal.items():
-                    tandem = int(value.get('tandem'))
-                    tandem = get_object_or_404(Product, pk=tandem)
-                    film = int(value.get('film'))
-                    film = get_object_or_404(Product, pk=film)
-
-                    order_line_item.append({
-                        'name': value.get('name'),
-                        'phone': value.get('phone'),
-                        'email': value.get('email'),
-                        'film': film,
-                        'tandem': tandem,
-                    })
-
-                order_line_item.save()
-
             except Exception as e:
                 if order:
                     order.delete()
