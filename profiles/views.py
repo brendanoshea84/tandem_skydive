@@ -6,6 +6,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 
 from bag.models import Order
+import json
 
 
 @login_required
@@ -37,7 +38,7 @@ def profile(request):
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     bag_items = []
-    orginal = order.original_bag
+    orginal = json.loads(order.original_bag)
 
     for key, value in orginal.items():
         tandem = int(value.get('tandem'))
