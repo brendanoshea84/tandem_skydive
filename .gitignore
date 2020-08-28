@@ -2,6 +2,6 @@
 *.pyc
 __pycache__
 venv
-env.py
+.env
 .vscode
 /media/film/tandem-example.mp4
