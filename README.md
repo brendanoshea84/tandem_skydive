@@ -133,6 +133,10 @@ As the developer for the site, my goals are to make the site professional and he
 
 ## Testing ##
 
+### [Link to test stories](https://github.com/brendanoshea84/tandem_skydive/blob/master/static/TEST.md) ###
+Here you will find the manual testing of the site
+
+
 ## Deployment ##
 ### Local ###
 1. First insure you IDE (example: VSCode) is up to date and has python3, PIP and Git ready to use.
@@ -182,6 +186,11 @@ python manage.py migrate
 ```
 python manage.py createsuperuser
 ```
+1. You need to set Allowed Host in settings 
+```
+ALLOWED_HOSTS = ['goteborg-skydive.herokuapp.com', '127.0.0.1']
+```
+
 1. The video will not work without the internet, if you wish to view the video locally. Go to home/templates/index.html line 20 and change
 ```
 <source src="https://goteborg-skydive.s3.eu-north-1.amazonaws.com/media/film/tandem-example.mp4" type="video/mp4" autoplay= "true">

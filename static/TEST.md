@@ -103,3 +103,37 @@ This project has a fair bit of pages and so I will break it down into their majo
     - Webhooks from stripe are being used to insure that the payment has been correct before giving the order number as well as an email of their purchase.
     - In settings, the payment is set as swedish krona as the company works in sweden. 
     
+
+#### Interesting Errors found during construction ####  
+##### Post/Redirect/Get #####
+[Wikipedia info of the error](https://en.wikipedia.org/wiki/Post/Redirect/Get)
+    While constructing this website, an error I came across was Post/Redirect/Get. This happened when if you were on the checkout page and refresh that page, the bag would enter another jumper. After doing some research, I found that my python code was allowing this. This was because I wasn't using the redirects correctly.
+
+##### Add another jumper and go to checkout buttons #####
+    On the package page, while this works I believe with more time I could come up with a different solution.
+    As the user I want to enter my details, click a button and go straight to the checkout. But if you clicked another jumper button, then change your mind. The go to checkout still wants you to enter your details as it wants to add another jumper to the bag. The solution was to have the toast, give you the link to go to checkout or press the shopping bag. As skydiving is so expensive, I belive people would really think about paying for the experience, as such while this scenario could happen in real life, I believe it would be a small percantage.
+
+##### Video on main page #####  
+    While developing this site, I had the video as a local file. But when transferring all the static files to AWS S3 and running the page live, the video src was not correct. I changed the src to S3 and the video works live and well. While developing the site, I had some internet problems. I noticed that the video with out the internet and working local, the video did not work. As this would only occure when the developer is with out the internet, I did not waste to much time looking into different src depending on the internet, but I would like to research this further.
+
+##### Adding Jumper/ remove jumper from bag #####  
+    Adding to a nested dictionay is quite easy. What is hard is when you need to delete apart of that dictionary. First, I gave them an id, which worked well in the beginning. So I had a loop to find the next id number, add 1 and thats the new id for the next jumper.
+    So for example, I have three jumper in the bag:
+    bag = { 0:{jumper 1},
+            1:{jumper 2},
+            2:{jumper 3},
+            }
+    And I delete the second jumper. 
+    bag = { 0:{jumper 1},
+            2:{jumper 3},
+            }
+    Using that loop, the next jumper would be 1:{jumper4}. If that was entered, this would replace the third jumper as the index would be 1.     
+    bag = { 0:{jumper 1},
+            1:{jumper 4},
+            }   
+    To fix this, I made a loop to find the highest id, then add 1. This would make the bag:
+    bag = { 0:{jumper 1},
+            2:{jumper 3},
+            3:{jumper 4},
+            }     
+    Looking back its a simple solution, but at the time and noticing that jumpers were being replaced, it was a head scratcher. But I learnt allot about nest dictionary.
