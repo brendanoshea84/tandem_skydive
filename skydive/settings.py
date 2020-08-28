@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'bootstrap4',
     'django_countries',
-    'bootstrap_datepicker_plus',
     'storages'
 ]
 
