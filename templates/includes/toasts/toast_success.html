@@ -14,7 +14,7 @@
                 <hr class="mt-1 mb-3">
             </div>
         </div>
-        {% if not on_profile_page %}
+        {% if '/products/' in request.path or '/bag/' in request.path %}
         <div class="toast-bg">
             <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">
                 <span style="color:white">Go To Secure Checkout</span> {% endif %}

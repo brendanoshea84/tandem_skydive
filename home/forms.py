@@ -5,7 +5,9 @@ from .models import Enquirer
 class EnquirerForm(forms.ModelForm):
     class Meta:
         model = Enquirer
-        fields = ('Name', 'Phone_Number', 'Email', 'Subject', 'Question')
+        fields = (
+            'default_full_name', 'default_phone_number', 'default_email',
+            'subject', 'question')
 
     def __init__(self, *args, **kwargs):
         """
