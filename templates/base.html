@@ -36,11 +36,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
             <div class="collapse navbar-collapse px-2 " id="main-nav">
-
                 <ul class="navbar-nav ml-auto list-inline text-center">
-
                     <li class="nav-item dropdown ml-auto">
                         <a class="nav-link" href="#" id="packages_toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             SkyDive Packages
@@ -89,11 +86,10 @@
         <br>{% else %} {% include 'includes/toasts/toast_info.html' %} {% endif %} {% endwith %} {% endfor %}
     </div>
     {% endif %}
-    <hr>
 
     <div class="container-fluid cover">
         <div class="row slide-height ">
-            <div class="top-img w-100">
+            <div class="top-img">
                 <div class="row ">
                     <div class="col shift-left-top ">
                         <p class="welcome-text ">Skydive Göteborg</p>
@@ -109,10 +105,8 @@
     </div>
 
 
-    <div class="bg">
-        <br>
-        <br> {% block main_content %} {% endblock %}
-
+    <div class="container-fluid bg">
+        {% block main_content %} {% endblock %}
     </div>
 
 
@@ -152,10 +146,13 @@
             </div>
         </div>
     </div>
-    <br>
+
     <button onclick="topFunction()" id="topBtn" title="Go to top">Top</button> {% block postload_js %}
     <script>
         $('.toast').toast('show');
+        if (window.location.pathname != '/products/skydive-packages') {
+            $('.toast').delay(3200).fadeOut(300);
+        }
     </script>
     {% endblock %}
 

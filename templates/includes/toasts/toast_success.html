@@ -15,8 +15,10 @@
             </div>
         </div>
         {% if not on_profile_page %}
-        <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">
-            <span>Go To Secure Checkout</span> {% endif %}
-        </a>
+        <div class="toast-bg">
+            <a href="{% url 'view_bag' %}" class="btn btn-black btn-block rounded-0">
+                <span style="color:white">Go To Secure Checkout</span> {% endif %}
+            </a>
+        </div>
     </div>
 </div>
