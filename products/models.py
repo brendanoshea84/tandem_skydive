@@ -29,6 +29,7 @@ class Product(models.Model):
         return self.name
 
 
+# Jump details.
 class Jumper(models.Model):
     jumper_Name = models.CharField(max_length=254, null=False, blank=False)
     Phone_Number = models.CharField(max_length=20, null=False, blank=False)

@@ -138,7 +138,16 @@ As the developer for the site, my goals are to make the site professional and he
 ### [Link to test stories](https://github.com/brendanoshea84/tandem_skydive/blob/master/static/TEST.md) ###
 Here you will find the manual testing of the site
 ### Validators ###
-
+[HTML: https://validator.w3.org/](https://validator.w3.org/)
+HTML had errors from Bootstrap URI
+[CSS: https://validator.w3.org/](https://jigsaw.w3.org/css-validator/#validate_by_input)
+CSS This document validates as CSS level 3 + SVG
+[Javascript: https://jshint.com/](https://jshint.com/)
+javascript had two warnings with 'template literal syntax' is only available in ES6 (use 'esversion: 6')
+[Python: https://pypi.org/project/autopep8/](https://pypi.org/project/autopep8/)
+By installing autopep8 onto VS Code, the only problems I had is lines too long.
+These were mostly from the setup of django in settings
+"python.formatting.provider": "autopep8"
 
 ## Deployment ##
 ### Local ###

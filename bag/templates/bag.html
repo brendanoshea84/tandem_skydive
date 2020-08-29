@@ -12,6 +12,7 @@
             <div class="col-md-12 col-lg-6 order-md-2 order-lg-1">
                 <h3 class="col font-blue">Payment Form</h3>
                 <br>
+                <!-- Form for billing -->
                 <form action="" method="POST" id="payment-form">
                     {% csrf_token %}
                     <fieldset class="rounded px-3 mb-5">
@@ -56,6 +57,7 @@
                     </div>
                 </form>
             </div>
+            <!-- Show jumpers in bag -->
             <div class="col-md-12 col-lg-6 order-md-1 order-lg-2">
                 <br> {% if bag_items %} {% for bag in bag_items %} {% csrf_token %}
                 <div class="row">
@@ -70,12 +72,14 @@
                         </div>
                         <br>
                         <div class="row">
+                            <!-- Jumper details -->
                             <div class="col-4">Contact Details:</div>
                             <div class="col-8">{{ bag.phone }}</div>
                             <div class="col-4"></div>
                             <div class="col-8">{{ bag.email }}</div>
                         </div>
                         <br>
+                        <!-- Jumper packages -->
                         <div class="row">
                             <div class="col-4">Packages:</div>
                             <div class="col-6">Tandem Jump </div>
@@ -87,6 +91,7 @@
                             {% endif %}
                         </div>
                         <hr>
+                        <!-- Subtotal of each packages -->
                         <div class="row">
                             <div class="col-4">Sub-Total:</div>
                             <div class="col-6"></div>
@@ -114,6 +119,7 @@
                 </div>
 
                 {% else %}
+                <!-- If bag is empty -->
                 <p class="lead mb-5">Your bag is empty.</p>
                 <a href="{% url 'skydive-packages' %}" class="btn btn-outline-black rounded-0 btn-lg">
                     <span class="icon">
