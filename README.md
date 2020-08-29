@@ -238,16 +238,12 @@ echo web: python app.py > Procfile
 Once the variables have been entered, restart the dynos or git push the project.
 
 
+### Credits ###
+Thanks to skydive crew at Skydive Sweden!
+Photos and video are from Nathan Olliver
+Jonas for being the skydive tandom master
+Jocke Holm for using his video because I did not like looking at myself everyday!
 
+Maranatha Ilesanmi for being an awesome Mentor!
 
-
-
-
-Photos
-Wide screen- https://www.skydivegb.com/charity
-
-
-
-django-alluth
-https://django-allauth.readthedocs.io/en/latest/installation.html
-copy to seetings from documentation
+The main head photo was taken from- https://www.skydivegb.com/charity
