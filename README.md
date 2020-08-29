@@ -40,6 +40,8 @@ As the developer for the site, my goals are to make the site professional and he
     - An easy email service to ask questions.
     - Ensuring payments are made correctly.
 
+### Mockups ###    
+[Link to Mockup folder](https://github.com/brendanoshea84/tandem_skydive/blob/master/static/Mockups)
 
 ## Features ##
 ### Existing Features ### 
@@ -135,6 +137,7 @@ As the developer for the site, my goals are to make the site professional and he
 
 ### [Link to test stories](https://github.com/brendanoshea84/tandem_skydive/blob/master/static/TEST.md) ###
 Here you will find the manual testing of the site
+### Validators ###
 
 
 ## Deployment ##
